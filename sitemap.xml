@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stefanbschneider.github.io/blog/about.html</loc>
-    <lastmod>2023-12-10T12:53:09.624Z</lastmod>
+    <loc>https://stefanbschneider.github.io/blog/index.html</loc>
+    <lastmod>2023-12-10T13:13:49.985Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/index.html</loc>
-    <lastmod>2023-12-10T12:53:08.615Z</lastmod>
+    <lastmod>2023-12-10T13:13:49.458Z</lastmod>
   </url>
   <url>
-    <loc>https://stefanbschneider.github.io/blog/index.html</loc>
-    <lastmod>2023-12-10T12:53:09.171Z</lastmod>
+    <loc>https://stefanbschneider.github.io/blog/about.html</loc>
+    <lastmod>2023-12-10T13:13:50.373Z</lastmod>
   </url>
 </urlset>

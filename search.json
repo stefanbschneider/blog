@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stefan’s Blog - Things I learned or want to learn",
     "section": "",
-    "text": "Hi, I am Stefan. I hold a computer science Ph.D. and am passionate about learning new things. I use this blog to take notes for myself - and possibly help others.\nContact details and more information about myself are on my website."
+    "text": "An Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/test-markdown-post/index.html",
@@ -77,10 +77,10 @@
     "text": "Footnotes\n\n\nThis is the footnote.↩︎"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "blog",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "An Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+    "text": "Hi, I am Stefan. I hold a computer science Ph.D. and am passionate about learning new things. I use this blog to take notes for myself - and possibly help others.\nContact details and more information about myself are on my website."
   }
 ]
