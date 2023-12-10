@@ -5,7 +5,7 @@ date: '2021-05-02'
 title: Cell Selection with Deep Reinforcement Learning
 description: Self-adaptive and self-learning multi-cell selection for 5G and beyond with deep reinforcement learning.
 image: images/5g-tower.jpg
-categories: [research, 5g, wireless, mobility, optimization, reinforcement learning, ray, rllib, python]
+categories: [research, wireless, reinforcement learning, ray, python, tensorflow]
 ---
 
 ![5G tower image by Christoph Scholz under CC BY-SA 2.0 license.](images/5g-tower.jpg)

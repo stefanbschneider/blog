@@ -5,7 +5,7 @@ date: '2021-02-15'
 title: Scaling Deep Reinforcement Learning to a Private Cluster
 description:  Using Ray RLlib to train a deep reinforcement learning agent (PPO) in a custom environment on a private cluster.
 image: images/ray.png
-categories: [python, ray, rllib, machine learning, reinforcement learning, cluster]
+categories: [python, ray, machine learning, reinforcement learning, deployment]
 ---
 
 ::: {.callout-warning}

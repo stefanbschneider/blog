@@ -4,7 +4,7 @@ aliases:
 title: Adding a Database to a Django App
 description:  Persistent storage using a SQL-based database for Django (development and deployment on Heroku).
 image: images/PostgreSQL.png
-categories: [django, heroku, database, github]
+categories: [django, deployment, database, github]
 date: '2021-01-29'
 ---
 

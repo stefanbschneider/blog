@@ -5,7 +5,7 @@ date: '2021-11-02'
 title: Easily editing videos with Descript
 description: Automatically removing "uhms" and editing videos with text-to-speech.
 image: images/descript.png
-categories: [videos, research]
+categories: [tools, research]
 ---
 
 After the Covid outbreak, many conferences and similar events were moved online or into a hybrid format.
