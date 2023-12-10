@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Stefan Schneider">
+<meta name="dcterms.date" content="2020-12-30">
+<meta name="description" content="Simple vision and image classification (CIFAR10) with CNNs using PyTorch.">
 
 <title>Stefan’s Blog - Getting Started with PyTorch</title>
 <style>
@@ -166,7 +168,17 @@ cookieconsent.run({
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Getting Started with PyTorch</h1>
-                      </div>
+                  <div>
+        <div class="description">
+          Simple vision and image classification (CIFAR10) with CNNs using PyTorch.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">python</div>
+                <div class="quarto-category">machine learning</div>
+                <div class="quarto-category">pytorch</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -179,6 +191,12 @@ cookieconsent.run({
             </div>
     </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 30, 2020</p>
+      </div>
+    </div>
     
       
     </div>
@@ -206,28 +224,28 @@ cookieconsent.run({
 
 
 
-<blockquote class="blockquote">
-<p>“Simple vision and image classification (CIFAR10) with CNNs using PyTorch.”</p>
-</blockquote>
-<ul>
-<li>toc:true</li>
-<li>branch: master</li>
-<li>badges: true</li>
-<li>comments: true</li>
-<li>categories: [python, machine learning, pytorch, vision, classification]</li>
-<li>image: images/logos/pytorch.png</li>
-<li>use_math: true</li>
-</ul>
-<blockquote class="blockquote">
-<p>Note: Code from the official <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">PyTorch 60-min-blitz tutorial</a>.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Code from the official <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html">PyTorch 60-min-blitz tutorial</a>.</p>
+</div>
+</div>
 <section id="loading-the-cifar10-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-cifar10-dataset">Loading the CIFAR10 Dataset</h2>
 <div class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-hide</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>transform <span class="op">=</span> transforms.Compose(</span>
@@ -252,30 +270,32 @@ Files already downloaded and verified</code></pre>
 </div>
 </div>
 <div class="cell" data-jupyter="{&quot;outputs_hidden&quot;:false}" data-pycharm="{&quot;name&quot;:&quot;#%%\n&quot;}" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-hide</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># functions to show an image</span></span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># functions to show an image</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> imshow(img):</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> img <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">0.5</span>     <span class="co"># unnormalize</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    npimg <span class="op">=</span> img.numpy()</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    plt.imshow(np.transpose(npimg, (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>)))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> imshow(img):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> img <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">0.5</span>     <span class="co"># unnormalize</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    npimg <span class="op">=</span> img.numpy()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    plt.imshow(np.transpose(npimg, (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>)))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># get some random training images</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>dataiter <span class="op">=</span> <span class="bu">iter</span>(trainloader)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>images, labels <span class="op">=</span> dataiter.<span class="bu">next</span>()</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># show images</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>imshow(torchvision.utils.make_grid(images))</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># print labels</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>.join(<span class="st">'</span><span class="sc">%5s</span><span class="st">'</span> <span class="op">%</span> classes[labels[j]] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># get some random training images</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>dataiter <span class="op">=</span> <span class="bu">iter</span>(trainloader)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>images, labels <span class="op">=</span> dataiter.<span class="bu">next</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># show images</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>imshow(torchvision.utils.make_grid(images))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># print labels</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' '</span>.join(<span class="st">'</span><span class="sc">%5s</span><span class="st">'</span> <span class="op">%</span> classes[labels[j]] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
-<p><img src="2020-12-30-pytorch-getting-started_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code> ship  frog truck  bird</code></pre>
@@ -284,7 +304,17 @@ Files already downloaded and verified</code></pre>
 </section>
 <section id="building-a-cnn-model-with-pytorch" class="level2">
 <h2 class="anchored" data-anchor-id="building-a-cnn-model-with-pytorch">Building a CNN Model with PyTorch</h2>
-<p>Architecture: * Input: 32x32-pixel images with 3 channels (RGB) → 3x32x32 images * Convolutions with 3 input channels, 6 output channels, and 5x5 square convolution → 6x28x28 images * 2x2 max pooling (subsampling) → 6x14x14 images * 6 input channels (from the previous Conv2d layer), 16 output channels, 5x5 square convolutions → 16x10x10 images * 2x2 max pooling (subsampling) → 16x5x5 images * Fully connected linear (=dense) layer with <code>16x5x5=400</code> input size and 120 output; ReLU activation * Fully connected layer with 120 input and 84 output; ReLU activation * Fully connected output layer with 84 input and 10 output (for the 10 classes in the CIFAR10 dataset); no/linear activation</p>
+<p>Architecture:</p>
+<ul>
+<li>Input: 32x32-pixel images with 3 channels (RGB) → 3x32x32 images</li>
+<li>Convolutions with 3 input channels, 6 output channels, and 5x5 square convolution → 6x28x28 images</li>
+<li>2x2 max pooling (subsampling) → 6x14x14 images</li>
+<li>6 input channels (from the previous Conv2d layer), 16 output channels, 5x5 square convolutions → 16x10x10 images</li>
+<li>2x2 max pooling (subsampling) → 16x5x5 images</li>
+<li>Fully connected linear (=dense) layer with <code>16x5x5=400</code> input size and 120 output; ReLU activation</li>
+<li>Fully connected layer with 120 input and 84 output; ReLU activation</li>
+<li>Fully connected output layer with 84 input and 10 output (for the 10 classes in the CIFAR10 dataset); no/linear activation</li>
+</ul>
 <p>Note that the layers are defined in the constructor and the activations applied in the <code>forward</code> function.</p>
 <p>To calculate the output size of a convolutional layer, use <a href="https://stackoverflow.com/a/53580139/2745116">this formula</a>:</p>
 <p><span class="math inline">\(\frac{W−K+2P}{S} +1\)</span> with input size <span class="math inline">\(W\)</span> (width and height for square images), convolution size <span class="math inline">\(K\)</span>, padding <span class="math inline">\(P\)</span> (default 0), and stride <span class="math inline">\(S\)</span> (default 1).</p>
@@ -404,7 +434,7 @@ Finished Training</code></pre>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>imshow(torchvision.utils.make_grid(images))</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'GroundTruth: '</span>, <span class="st">' '</span>.join(<span class="st">'</span><span class="sc">%5s</span><span class="st">'</span> <span class="op">%</span> classes[labels[j]] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2020-12-30-pytorch-getting-started_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>GroundTruth:    cat  ship  ship plane</code></pre>

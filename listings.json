@@ -2,7 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/pytorch-getting-started/2020-12-30-pytorch-getting-started.html",
       "/posts/google-analytics-track-links/index.html",
       "/posts/descript/index.html",
       "/posts/deepcomp/index.html",
@@ -10,6 +9,8 @@
       "/posts/django-bootstrap/index.html",
       "/posts/my-first-project/index.html",
       "/posts/django-db/index.html",
+      "/posts/django-heroku/2021-01-19-django-heroku.html",
+      "/posts/pytorch-getting-started/2020-12-30-pytorch-getting-started.html",
       "/posts/test-notebook-post/index.html",
       "/posts/test-markdown-post/index.html"
     ]

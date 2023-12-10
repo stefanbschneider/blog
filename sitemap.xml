@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stefanbschneider.github.io/blog/index.html</loc>
-    <lastmod>2023-12-10T14:59:45.335Z</lastmod>
+    <lastmod>2023-12-10T15:14:09.597Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/google-analytics-track-links/index.html</loc>
-    <lastmod>2023-12-10T14:59:43.700Z</lastmod>
+    <lastmod>2023-12-10T15:14:07.841Z</lastmod>
   </url>
   <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/rllib-private-cluster/index.html</loc>
-    <lastmod>2023-12-10T14:59:42.644Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/my-first-project/index.html</loc>
-    <lastmod>2023-12-10T14:59:41.296Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/test-notebook-post/index.html</loc>
-    <lastmod>2023-12-10T14:59:40.083Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/deepcomp/index.html</loc>
-    <lastmod>2023-12-10T14:59:37.919Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/index.html</loc>
-    <lastmod>2023-12-10T14:59:38.712Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/pytorch-getting-started/2020-12-30-pytorch-getting-started.html</loc>
-    <lastmod>2023-12-10T14:59:40.601Z</lastmod>
+    <loc>https://stefanbschneider.github.io/blog/posts/django-heroku/2021-01-19-django-heroku.html</loc>
+    <lastmod>2023-12-10T15:14:06.741Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/django-bootstrap/index.html</loc>
-    <lastmod>2023-12-10T14:59:41.879Z</lastmod>
+    <lastmod>2023-12-10T15:14:05.376Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/pytorch-getting-started/2020-12-30-pytorch-getting-started.html</loc>
+    <lastmod>2023-12-10T15:14:04.125Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/index.html</loc>
+    <lastmod>2023-12-10T15:14:02.119Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/deepcomp/index.html</loc>
+    <lastmod>2023-12-10T15:14:01.299Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/test-notebook-post/index.html</loc>
+    <lastmod>2023-12-10T15:14:03.527Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/my-first-project/index.html</loc>
+    <lastmod>2023-12-10T15:14:04.804Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/rllib-private-cluster/index.html</loc>
+    <lastmod>2023-12-10T15:14:06.165Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/descript/index.html</loc>
-    <lastmod>2023-12-10T14:59:43.099Z</lastmod>
+    <lastmod>2023-12-10T15:14:07.212Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/django-db/index.html</loc>
-    <lastmod>2023-12-10T14:59:44.278Z</lastmod>
+    <lastmod>2023-12-10T15:14:08.435Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/about.html</loc>
-    <lastmod>2023-12-10T14:59:45.714Z</lastmod>
+    <lastmod>2023-12-10T15:14:10.003Z</lastmod>
   </url>
 </urlset>
