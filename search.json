@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Things I Learned or Want to Learn",
     "section": "",
-    "text": "Tracking Link Clicks With Google Analytics\n\n\n\n\n\n\n\ngoogle analytics\n\n\n\n\nMonitor clicks to specific links on your website (outgoing, affiliate, ads, etc.) using Google Analytics GA4.\n\n\n\n\n\n\nJan 16, 2022\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nEasily editing videos with Descript\n\n\n\n\n\n\n\nvideos\n\n\nresearch\n\n\n\n\nAutomatically removing “uhms” and editing videos with text-to-speech.\n\n\n\n\n\n\nNov 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nCell Selection with Deep Reinforcement Learning\n\n\n\n\n\n\n\nresearch\n\n\n5g\n\n\nwireless\n\n\nmobility\n\n\noptimization\n\n\nreinforcement learning\n\n\nray\n\n\nrllib\n\n\npython\n\n\n\n\nSelf-adaptive and self-learning multi-cell selection for 5G and beyond with deep reinforcement learning.\n\n\n\n\n\n\nMay 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nScaling Deep Reinforcement Learning to a Private Cluster\n\n\n\n\n\n\n\npython\n\n\nray\n\n\nrllib\n\n\nmachine learning\n\n\nreinforcement learning\n\n\ncluster\n\n\n\n\nUsing Ray RLlib to train a deep reinforcement learning agent (PPO) in a custom environment on a private cluster.\n\n\n\n\n\n\nFeb 15, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nUsing Bootstrap to Style a Django App\n\n\n\n\n\n\n\npython\n\n\ndjango\n\n\nbootstrap\n\n\n\n\nUsing the crispy tag and Bootstrap 5 for nicer styling of Django apps.\n\n\n\n\n\n\nFeb 3, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nLessons Learned from Leading My First Project\n\n\n\n\n\n\n\nleadership\n\n\n\n\nSeven lessons learned from leading my first project, RealVNF.\n\n\n\n\n\n\nJan 31, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAdding a Database to a Django App\n\n\n\n\n\n\n\ndjango\n\n\nheroku\n\n\ndatabase\n\n\ngithub\n\n\n\n\nPersistent storage using a SQL-based database for Django (development and deployment on Heroku).\n\n\n\n\n\n\nJan 29, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+    "text": "Tracking Link Clicks With Google Analytics\n\n\n\n\n\n\n\ngoogle analytics\n\n\n\n\nMonitor clicks to specific links on your website (outgoing, affiliate, ads, etc.) using Google Analytics GA4.\n\n\n\n\n\n\nJan 16, 2022\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nEasily editing videos with Descript\n\n\n\n\n\n\n\nvideos\n\n\nresearch\n\n\n\n\nAutomatically removing “uhms” and editing videos with text-to-speech.\n\n\n\n\n\n\nNov 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nCell Selection with Deep Reinforcement Learning\n\n\n\n\n\n\n\nresearch\n\n\n5g\n\n\nwireless\n\n\nmobility\n\n\noptimization\n\n\nreinforcement learning\n\n\nray\n\n\nrllib\n\n\npython\n\n\n\n\nSelf-adaptive and self-learning multi-cell selection for 5G and beyond with deep reinforcement learning.\n\n\n\n\n\n\nMay 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nScaling Deep Reinforcement Learning to a Private Cluster\n\n\n\n\n\n\n\npython\n\n\nray\n\n\nrllib\n\n\nmachine learning\n\n\nreinforcement learning\n\n\ncluster\n\n\n\n\nUsing Ray RLlib to train a deep reinforcement learning agent (PPO) in a custom environment on a private cluster.\n\n\n\n\n\n\nFeb 15, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nUsing Bootstrap to Style a Django App\n\n\n\n\n\n\n\npython\n\n\ndjango\n\n\nbootstrap\n\n\n\n\nUsing the crispy tag and Bootstrap 5 for nicer styling of Django apps.\n\n\n\n\n\n\nFeb 3, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nLessons Learned from Leading My First Project\n\n\n\n\n\n\n\nleadership\n\n\n\n\nSeven lessons learned from leading my first project, RealVNF.\n\n\n\n\n\n\nJan 31, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAdding a Database to a Django App\n\n\n\n\n\n\n\ndjango\n\n\nheroku\n\n\ndatabase\n\n\ngithub\n\n\n\n\nPersistent storage using a SQL-based database for Django (development and deployment on Heroku).\n\n\n\n\n\n\nJan 29, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nFastpages Notebook Blog Post\n\n\n\n\n\n\n\njupyter\n\n\nblogging\n\n\n\n\nA tutorial of fastpages for Jupyter notebooks.\n\n\n\n\n\n\nFeb 20, 2020\n\n\nfastpages\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nblogging\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/google-analytics-track-links/index.html",
@@ -140,27 +140,6 @@
     "text": "Embrace Bureaucracy\nI suppose any bigger project comes with bureaucracy. In my case, I had to communicate with the funding partner and the university’s administration. Sometimes, I was surprised by the amount of rules, formulas, and processes for hiring people, traveling, and buying equipment - even with the money available (i.e., after securing the grant).\nAs a small anecdote, I tried to hire student research assistants for the project to start with the beginning of the project in November. Unfortunately, this was not possible and I was told that new contracts could not start at the end of a year. I had to wait until January for hiring the students. In January, I was asked why I did not follow my original budget plan and did not spend any money on staff during the first two months (November and December)…\nStill, while some rules may be a bit bizarre, all people in the administration were friendly and helpful. I understood that I had to identify the right people to ask and keep asking persistently to eventually understand the rules and get what I needed."
   },
   {
-    "objectID": "posts/deepcomp/index.html",
-    "href": "posts/deepcomp/index.html",
-    "title": "Cell Selection with Deep Reinforcement Learning",
-    "section": "",
-    "text": "5G tower image by Christoph Scholz under CC BY-SA 2.0 license.\nIn the last year, I have worked a lot on mobility management and cell selection in mobile networks, which is very relevant for upcoming 5G networks and beyond. In this blog post, I try to give a brief, high-level overview of my research, describing what cell selection is, why it is important yet challenging. I also outline how I solved the cell selection problem with modern self-learning techniques and visualize the outcomes.\nThe whole blog post is meant for people who are interested but do not have a scientific background or extensive knowledge in the area. The corresponding research paper is accepted at 2023 IEEE Transactions on Network and Service Management (TNSM); a preprint is available here.\nEither way, if something is unclear, or you have open questions, feel free to reach out to me. My contact information is on my website."
-  },
-  {
-    "objectID": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
-    "href": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
-    "title": "Cell Selection with Deep Reinforcement Learning",
-    "section": "Centralized cell selection with DeepCoMP",
-    "text": "Centralized cell selection with DeepCoMP\nAs a centralized approach, DeepCoMP assumes global knowledge and control of all users. This means, DeepCoMP needs to collect information from all users in a central location, e.g., about users’ current connections, signal strength, etc. Similarly, DeepCoMP represents a single, centralized entity that selects cells for all users simultaneously. This is illustrated in the figure below.\n\n\n\nCentralized approach: DeepCoMP"
-  },
-  {
-    "objectID": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
-    "href": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
-    "title": "Cell Selection with Deep Reinforcement Learning",
-    "section": "Distributed cell selection with DD-CoMP and D3-CoMP",
-    "text": "Distributed cell selection with DD-CoMP and D3-CoMP\nIn addition to the centralized DeepCoMP approach, I also propose two distributed approaches, called DD-CoMP and D3-CoMP. These approaches use multi-agent reinforcement learning, where multiple “agents” select cells independently in parallel. Particularly, I assume one agent per user, which observes the users current connections, signal strength, etc. and selects suitable cells. Because each agent only cares about its own user, it is much simpler to implement and use than the centralized DeepCoMP approach. This is visualized in the figure below.\n\n\n\nDistributed approaches: DD-CoMP and D3-CoMP\n\n\nIn reinforcement learning, such agents are initially trained, where they test and learn from many different actions, and then apply their learned policy (in the “inference” phase). In DD-CoMP training experience from all users is combined to learn cell selection more efficiently. In D3-CoMP each agent trains independently from all other agents and only uses experience from its own user. This allows to reduce communication between agents."
-  },
-  {
     "objectID": "posts/test-markdown-post/index.html",
     "href": "posts/test-markdown-post/index.html",
     "title": "An Example Markdown Post",
@@ -229,6 +208,104 @@
     "title": "An Example Markdown Post",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThis is the footnote.↩︎"
+  },
+  {
+    "objectID": "posts/deepcomp/index.html",
+    "href": "posts/deepcomp/index.html",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "",
+    "text": "5G tower image by Christoph Scholz under CC BY-SA 2.0 license.\nIn the last year, I have worked a lot on mobility management and cell selection in mobile networks, which is very relevant for upcoming 5G networks and beyond. In this blog post, I try to give a brief, high-level overview of my research, describing what cell selection is, why it is important yet challenging. I also outline how I solved the cell selection problem with modern self-learning techniques and visualize the outcomes.\nThe whole blog post is meant for people who are interested but do not have a scientific background or extensive knowledge in the area. The corresponding research paper is accepted at 2023 IEEE Transactions on Network and Service Management (TNSM); a preprint is available here.\nEither way, if something is unclear, or you have open questions, feel free to reach out to me. My contact information is on my website."
+  },
+  {
+    "objectID": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
+    "href": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "Centralized cell selection with DeepCoMP",
+    "text": "Centralized cell selection with DeepCoMP\nAs a centralized approach, DeepCoMP assumes global knowledge and control of all users. This means, DeepCoMP needs to collect information from all users in a central location, e.g., about users’ current connections, signal strength, etc. Similarly, DeepCoMP represents a single, centralized entity that selects cells for all users simultaneously. This is illustrated in the figure below.\n\n\n\nCentralized approach: DeepCoMP"
+  },
+  {
+    "objectID": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
+    "href": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "Distributed cell selection with DD-CoMP and D3-CoMP",
+    "text": "Distributed cell selection with DD-CoMP and D3-CoMP\nIn addition to the centralized DeepCoMP approach, I also propose two distributed approaches, called DD-CoMP and D3-CoMP. These approaches use multi-agent reinforcement learning, where multiple “agents” select cells independently in parallel. Particularly, I assume one agent per user, which observes the users current connections, signal strength, etc. and selects suitable cells. Because each agent only cares about its own user, it is much simpler to implement and use than the centralized DeepCoMP approach. This is visualized in the figure below.\n\n\n\nDistributed approaches: DD-CoMP and D3-CoMP\n\n\nIn reinforcement learning, such agents are initially trained, where they test and learn from many different actions, and then apply their learned policy (in the “inference” phase). In DD-CoMP training experience from all users is combined to learn cell selection more efficiently. In D3-CoMP each agent trains independently from all other agents and only uses experience from its own user. This allows to reduce communication between agents."
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html",
+    "href": "posts/test-notebook-post/index.html",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "",
+    "text": "Note\n\n\n\nThis post was generated by fastpages and kept for reference.\nFuture posts should be written as .qmd files as described here."
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#front-matter",
+    "href": "posts/test-notebook-post/index.html#front-matter",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Front Matter",
+    "text": "Front Matter\nThe first cell in your Jupyter Notebook or markdown blog post contains front matter. Front matter is metadata that can turn on/off options in your Notebook. It is formatted like this:\n# \"My Title\"\n&gt; \"Awesome summary\"\n\n- toc: true\n- branch: master\n- badges: true\n- comments: true\n- author: Hamel Husain & Jeremy Howard\n- categories: [fastpages, jupyter]\n\nSetting toc: true will automatically generate a table of contents\nSetting badges: true will automatically include GitHub and Google Colab links to your notebook.\nSetting comments: true will enable commenting on your blog post, powered by utterances.\n\nThe title and description need to be enclosed in double quotes only if they include special characters such as a colon. More details and options for front matter can be viewed on the front matter section of the README."
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#markdown-shortcuts",
+    "href": "posts/test-notebook-post/index.html#markdown-shortcuts",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Markdown Shortcuts",
+    "text": "Markdown Shortcuts\nA #hide comment at the top of any code cell will hide both the input and output of that cell in your blog post.\nA #hide_input comment at the top of any code cell will only hide the input of that cell.\n\n\nThe comment #hide_input was used to hide the code that produced this.\n\n\nput a #collapse-hide flag at the top of any cell if you want to hide that cell by default, but give the reader the option to show it:\n\n\nCode\nimport pandas as pd\nimport altair as alt\n\n\nput a #collapse-show flag at the top of any cell if you want to show that cell by default, but give the reader the option to hide it:\n\n\nCode\ncars = 'https://vega.github.io/vega-datasets/data/cars.json'\nmovies = 'https://vega.github.io/vega-datasets/data/movies.json'\nsp500 = 'https://vega.github.io/vega-datasets/data/sp500.csv'\nstocks = 'https://vega.github.io/vega-datasets/data/stocks.csv'\nflights = 'https://vega.github.io/vega-datasets/data/flights-5k.json'\n\n\nplace a #collapse-output flag at the top of any cell if you want to put the output under a collapsable element that is closed by default, but give the reader the option to open it:\n\n#collapse-output\nprint('The comment #collapse-output was used to collapse the output of this cell by default but you can expand it.')\n\nThe comment #collapse-output was used to collapse the output of this cell by default but you can expand it."
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#interactive-charts-with-altair",
+    "href": "posts/test-notebook-post/index.html#interactive-charts-with-altair",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Interactive Charts With Altair",
+    "text": "Interactive Charts With Altair\nCharts made with Altair remain interactive. Example charts taken from this repo, specifically this notebook.\n\nExample 1: DropDown\n\n# single-value selection over [Major_Genre, MPAA_Rating] pairs\n# use specific hard-wired values as the initial selected values\nselection = alt.selection_single(\n    name='Select',\n    fields=['Major_Genre', 'MPAA_Rating'],\n    init={'Major_Genre': 'Drama', 'MPAA_Rating': 'R'},\n    bind={'Major_Genre': alt.binding_select(options=genres), 'MPAA_Rating': alt.binding_radio(options=mpaa)}\n)\n  \n# scatter plot, modify opacity based on selection\nalt.Chart(df).mark_circle().add_selection(\n    selection\n).encode(\n    x='Rotten_Tomatoes_Rating:Q',\n    y='IMDB_Rating:Q',\n    tooltip='Title:N',\n    opacity=alt.condition(selection, alt.value(0.75), alt.value(0.05))\n)\n\n\n\n\n\n\n\n\n\nExample 2: Tooltips\n\nalt.Chart(df).mark_circle().add_selection(\n    alt.selection_interval(bind='scales', encodings=['x'])\n).encode(\n    alt.X('Rotten_Tomatoes_Rating', type='quantitative'),\n    alt.Y('IMDB_Rating', type='quantitative', axis=alt.Axis(minExtent=30)),\n#     y=alt.Y('IMDB_Rating:Q', ), # use min extent to stabilize axis title placement\n    tooltip=['Title:N', 'Release_Date:N', 'IMDB_Rating:Q', 'Rotten_Tomatoes_Rating:Q']\n).properties(\n    width=500,\n    height=400\n)\n\n\n\n\n\n\n\n\n\nExample 3: More Tooltips\n\n# select a point for which to provide details-on-demand\nlabel = alt.selection_single(\n    encodings=['x'], # limit selection to x-axis value\n    on='mouseover',  # select on mouseover events\n    nearest=True,    # select data point nearest the cursor\n    empty='none'     # empty selection includes no data points\n)\n\n# define our base line chart of stock prices\nbase = alt.Chart().mark_line().encode(\n    alt.X('date:T'),\n    alt.Y('price:Q', scale=alt.Scale(type='log')),\n    alt.Color('symbol:N')\n)\n\nalt.layer(\n    base, # base line chart\n    \n    # add a rule mark to serve as a guide line\n    alt.Chart().mark_rule(color='#aaa').encode(\n        x='date:T'\n    ).transform_filter(label),\n    \n    # add circle marks for selected time points, hide unselected points\n    base.mark_circle().encode(\n        opacity=alt.condition(label, alt.value(1), alt.value(0))\n    ).add_selection(label),\n\n    # add white stroked text to provide a legible background for labels\n    base.mark_text(align='left', dx=5, dy=-5, stroke='white', strokeWidth=2).encode(\n        text='price:Q'\n    ).transform_filter(label),\n\n    # add text labels for stock prices\n    base.mark_text(align='left', dx=5, dy=-5).encode(\n        text='price:Q'\n    ).transform_filter(label),\n    \n    data=stocks\n).properties(\n    width=500,\n    height=400\n)"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#data-tables",
+    "href": "posts/test-notebook-post/index.html#data-tables",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Data Tables",
+    "text": "Data Tables\nYou can display tables per the usual way in your blog:\n\n# display table with pandas\ndf[['Title', 'Worldwide_Gross', \n    'Production_Budget', 'Distributor', 'MPAA_Rating', 'IMDB_Rating', 'Rotten_Tomatoes_Rating']].head()\n\n\n\n\n\n\n\n\nTitle\nWorldwide_Gross\nProduction_Budget\nDistributor\nMPAA_Rating\nIMDB_Rating\nRotten_Tomatoes_Rating\n\n\n\n\n0\nThe Land Girls\n146083.0\n8000000.0\nGramercy\nR\n6.1\nNaN\n\n\n1\nFirst Love, Last Rites\n10876.0\n300000.0\nStrand\nR\n6.9\nNaN\n\n\n2\nI Married a Strange Person\n203134.0\n250000.0\nLionsgate\nNone\n6.8\nNaN\n\n\n3\nLet's Talk About Sex\n373615.0\n300000.0\nFine Line\nNone\nNaN\n13.0\n\n\n4\nSlam\n1087521.0\n1000000.0\nTrimark\nR\n3.4\n62.0"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#images",
+    "href": "posts/test-notebook-post/index.html#images",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Images",
+    "text": "Images\n\nLocal Images\nYou can reference local images and they will be copied and rendered on your blog automatically. You can include these with the following markdown syntax:\n![](images/fastai.png)\n\n\n\nRemote Images\nRemote images can be included with the following markdown syntax:\n![](https://image.flaticon.com/icons/svg/36/36686.svg) (just and example; link broken)\n\n\nAnimated Gifs\nAnimated Gifs work, too!\n![](https://upload.wikimedia.org/wikipedia/commons/7/71/ChessPawnSpecialMoves.gif)\n\n\n\nCaptions\nYou can include captions with markdown images like this:\n![](https://www.fast.ai/images/fastai_paper/show_batch.png \"Credit: https://www.fast.ai/2020/02/13/fastai-A-Layered-API-for-Deep-Learning/\")"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#github-flavored-emojis",
+    "href": "posts/test-notebook-post/index.html#github-flavored-emojis",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "GitHub Flavored Emojis",
+    "text": "GitHub Flavored Emojis\nTyping I give this post two :+1:! will render this:\nI give this post two :+1:!"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#tweetcards",
+    "href": "posts/test-notebook-post/index.html#tweetcards",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Tweetcards",
+    "text": "Tweetcards\nTyping &gt; twitter: https://twitter.com/jakevdp/status/1204765621767901185?s=20 will render this:\n\ntwitter: https://twitter.com/jakevdp/status/1204765621767901185?s=20"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#youtube-videos",
+    "href": "posts/test-notebook-post/index.html#youtube-videos",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Youtube Videos",
+    "text": "Youtube Videos\nTyping &gt; youtube: https://youtu.be/XfoYk_Z5AkI will render this:"
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#boxes-callouts",
+    "href": "posts/test-notebook-post/index.html#boxes-callouts",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Boxes / Callouts",
+    "text": "Boxes / Callouts\nTyping &gt; Warning: There will be no second warning! will render this:\n\n\n\n\n\n\nWarning\n\n\n\nThere will be no second warning!\n\n\nTyping &gt; Important: Pay attention! It's important. will render this:\n\n\n\n\n\n\nImportant\n\n\n\nPay attention! It’s important.\n\n\nTyping &gt; Tip: This is my tip. will render this:\n\n\n\n\n\n\nTip\n\n\n\nThis is my tip.\n\n\nTyping &gt; Note: Take note of this. will render this:\n\n\n\n\n\n\nNote\n\n\n\nTake note of this.\n\n\nTyping &gt; Note: A doc link to [an example website: fast.ai](https://www.fast.ai/) should also work fine. will render in the docs:\n\n\n\n\n\n\nNote\n\n\n\nA doc link to an example website: fast.ai should also work fine."
+  },
+  {
+    "objectID": "posts/test-notebook-post/index.html#footnotes",
+    "href": "posts/test-notebook-post/index.html#footnotes",
+    "title": "Fastpages Notebook Blog Post",
+    "section": "Footnotes",
+    "text": "Footnotes\nYou can have footnotes in notebooks, however the syntax is different compared to markdown documents. This guide provides more detail about this syntax, which looks like this:\n{% raw %}For example, here is a footnote {% fn 1 %}.\nAnd another {% fn 2 %}\n{{ 'This is the footnote.' | fndetail: 1 }}\n{{ 'This is the other footnote. You can even have a [link](https://stefanbschneider.github.io/)!' | fndetail: 2 }}{% endraw %}\nFor example, here is a footnote {% fn 1 %}.\nAnd another {% fn 2 %}\n{{ ‘This is the footnote.’ | fndetail: 1 }} {{ ‘This is the other footnote. You can even have a link!’ | fndetail: 2 }}"
   },
   {
     "objectID": "posts/django-bootstrap/index.html",

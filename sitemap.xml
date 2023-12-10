@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stefanbschneider.github.io/blog/index.html</loc>
-    <lastmod>2023-12-10T14:39:53.528Z</lastmod>
+    <lastmod>2023-12-10T14:55:11.461Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/google-analytics-track-links/index.html</loc>
-    <lastmod>2023-12-10T14:39:51.965Z</lastmod>
+    <lastmod>2023-12-10T14:55:09.835Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/rllib-private-cluster/index.html</loc>
-    <lastmod>2023-12-10T14:39:50.921Z</lastmod>
+    <lastmod>2023-12-10T14:55:08.734Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/my-first-project/index.html</loc>
-    <lastmod>2023-12-10T14:39:49.555Z</lastmod>
-  </url>
-  <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/deepcomp/index.html</loc>
-    <lastmod>2023-12-10T14:39:48.027Z</lastmod>
+    <lastmod>2023-12-10T14:55:07.359Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/index.html</loc>
-    <lastmod>2023-12-10T14:39:48.841Z</lastmod>
+    <lastmod>2023-12-10T14:55:05.306Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/deepcomp/index.html</loc>
+    <lastmod>2023-12-10T14:55:04.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stefanbschneider.github.io/blog/posts/test-notebook-post/index.html</loc>
+    <lastmod>2023-12-10T14:55:06.672Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/django-bootstrap/index.html</loc>
-    <lastmod>2023-12-10T14:39:50.143Z</lastmod>
+    <lastmod>2023-12-10T14:55:07.943Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/descript/index.html</loc>
-    <lastmod>2023-12-10T14:39:51.364Z</lastmod>
+    <lastmod>2023-12-10T14:55:09.189Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/django-db/index.html</loc>
-    <lastmod>2023-12-10T14:39:52.538Z</lastmod>
+    <lastmod>2023-12-10T14:55:10.432Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/about.html</loc>
-    <lastmod>2023-12-10T14:39:53.911Z</lastmod>
+    <lastmod>2023-12-10T14:55:11.872Z</lastmod>
   </url>
 </urlset>
