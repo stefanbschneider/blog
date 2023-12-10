@@ -1,4 +1,6 @@
 ---
+aliases:
+- /test-markdown-post
 author: fastpages & quarto
 categories:
 - markdown
