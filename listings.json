@@ -3,8 +3,10 @@
     "listing": "/index.html",
     "items": [
       "/posts/google-analytics-track-links/index.html",
+      "/posts/partial-observability/index.html",
       "/posts/descript/index.html",
       "/posts/deepcomp/index.html",
+      "/posts/pytorch-django/index.html",
       "/posts/rllib-private-cluster/index.html",
       "/posts/django-bootstrap/index.html",
       "/posts/my-first-project/index.html",
