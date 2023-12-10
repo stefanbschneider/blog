@@ -310,10 +310,6 @@ python manage.py migrate</code></pre>
 <h1>PostgreSQL® DB on Heroku</h1>
 <p>The SQLite database used for local development is <a href="https://djangodeployment.com/2016/12/23/which-database-should-i-use-on-production/">not suitable for production deployment</a>. To enable persistent storage for my “Hello World” app deployed on Heroku, I use <a href="https://www.heroku.com/postgres">Heroku’s PostgreSQL® database</a>, which is free for such small use cases.</p>
 <p>For deployment, Heroku uses by default <a href="https://www.heroku.com/postgres">a free PostgreSQL® database</a>. This database is automatically created when <a href="https://stefanbschneider.github.io/blog/django-heroku">initially setting up the Django app on Heroku</a>. The available databases on Heroku are listed in the <a href="https://data.heroku.com/">Heroku data dashboard</a>.</p>
-<!-- <figure>
-    <img src="{{ site.baseurl }}/images/django-db/heroku-db.png" width="609" height="51" alt="Screenshot of the Heroku Data dashboard." />
-    <figcaption>Screenshot of the Heroku Data dashboard.</figcaption>
-</figure> -->
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/heroku-db.png" class="img-fluid figure-img"></p>

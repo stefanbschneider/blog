@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/pytorch-getting-started/2020-12-30-pytorch-getting-started.html",
       "/posts/google-analytics-track-links/index.html",
       "/posts/descript/index.html",
       "/posts/deepcomp/index.html",
