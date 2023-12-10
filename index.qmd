@@ -1,5 +1,5 @@
 ---
-title: "Stefan's Blog - Things I learned or want to learn"
+title: "Stefan's Blog - Things I Learned or Want to Learn"
 listing:
   contents: posts
   sort: "date desc"

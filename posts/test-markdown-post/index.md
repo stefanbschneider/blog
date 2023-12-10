@@ -10,9 +10,7 @@ date: '2020-01-14'
 date-modified: '2023-12-10'
 description: A minimal example of using markdown with fastpages/Quarto.
 image: images/markdown.png
-layout: post
 title: An Example Markdown Post
-toc: true
 ---
 
 
