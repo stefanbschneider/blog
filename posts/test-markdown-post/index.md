@@ -72,7 +72,7 @@ This is an example of a 'folded' caution callout that can be expanded by the use
 
 ## Images
 
-![](/images/fastai.png "fast.ai's logo")
+![](images/fastai.png "fast.ai's logo")
 
 ## Code
 
