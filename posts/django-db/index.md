@@ -3,7 +3,6 @@ aliases:
 - /django-db
 toc: true
 layout: post
-author: Stefan Schneider
 title: Adding a Database to a Django App
 description:  Persistent storage using a SQL-based database for Django (development and deployment on Heroku).
 image: images/PostgreSQL.png
