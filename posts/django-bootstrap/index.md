@@ -195,4 +195,3 @@ Other blog posts:
 * [Adding Google Analytics to a Django App](https://stefanbschneider.github.io/blog/django-google-analytics)
 * [Building a Django App and Deploying It on Heroku](https://stefanbschneider.github.io/blog/django-heroku)
 * [Adding a Database to a Django App](https://stefanbschneider.github.io/blog/django-db)
-* [Other blog posts related to Django](https://stefanbschneider.github.io/blog/categories/#django)

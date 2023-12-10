@@ -88,4 +88,3 @@ Leading this first project was a great experience and an amazing opportunity. I 
 * [RealVNF Official Project Description](https://softwarecampus.de/en/project/realvnf-improved-coordination-of-chained-vnfs-under-realistic-conditions/)
 * [RealVNF GitHub Repositories](https://github.com/RealVNF)
 * [Software Campus](https://softwarecampus.de/en/)
-* [All Blog Posts on Leadership](https://stefanbschneider.github.io/blog/categories/#leadership)

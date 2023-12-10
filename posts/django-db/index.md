@@ -165,8 +165,6 @@ Other blog posts:
 * [Adding Google Analytics to a Django App](https://stefanbschneider.github.io/blog/django-google-analytics)
 * [Building a Django App and Deploying It on Heroku](https://stefanbschneider.github.io/blog/django-heroku)
 * [Using Bootstrap to Style a Django App](https://stefanbschneider.github.io/blog/django-bootstrap)
-* [Other blog posts related to Django](https://stefanbschneider.github.io/blog/categories/#django)
-* [Other blog posts related to Heroku](https://stefanbschneider.github.io/blog/categories/#heroku)
 
 
 [^1]: Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission. 

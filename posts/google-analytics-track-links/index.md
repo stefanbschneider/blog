@@ -73,5 +73,4 @@ I hope this was helpful. Let me know in the comments if anything remains unclear
 
 # What Next
 
-* [Adding Google Analytics to a Django App](https://stefanbschneider.github.io/blog/django-google-analytics)
-* [All blog posts on Google Analytics](https://stefanbschneider.github.io/blog/categories/#google%20analytics)
+Related blog post: [Adding Google Analytics to a Django App](https://stefanbschneider.github.io/blog/django-google-analytics)
