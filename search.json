@@ -2,9 +2,86 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Stefan’s Blog - Things I Learned or Want to Learn",
+    "title": "Things I Learned or Want to Learn",
     "section": "",
-    "text": "Lessons Learned from Leading My First Project\n\n\n\n\n\n\n\nleadership\n\n\n\n\nSeven lessons learned from leading my first project, RealVNF.\n\n\n\n\n\n\nJan 31, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAdding a Database to a Django App\n\n\n\n\n\n\n\ndjango\n\n\nheroku\n\n\ndatabase\n\n\ngithub\n\n\n\n\nPersistent storage using a SQL-based database for Django (development and deployment on Heroku).\n\n\n\n\n\n\nJan 29, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+    "text": "Tracking Link Clicks With Google Analytics\n\n\n\n\n\n\n\ngoogle analytics\n\n\n\n\nMonitor clicks to specific links on your website (outgoing, affiliate, ads, etc.) using Google Analytics GA4.\n\n\n\n\n\n\nJan 16, 2022\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nEasily editing videos with Descript\n\n\n\n\n\n\n\nvideos\n\n\nresearch\n\n\n\n\nAutomatically removing “uhms” and editing videos with text-to-speech.\n\n\n\n\n\n\nNov 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nCell Selection with Deep Reinforcement Learning\n\n\n\n\n\n\n\nresearch\n\n\n5g\n\n\nwireless\n\n\nmobility\n\n\noptimization\n\n\nreinforcement learning\n\n\nray\n\n\nrllib\n\n\npython\n\n\n\n\nSelf-adaptive and self-learning multi-cell selection for 5G and beyond with deep reinforcement learning.\n\n\n\n\n\n\nMay 2, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nScaling Deep Reinforcement Learning to a Private Cluster\n\n\n\n\n\n\n\npython\n\n\nray\n\n\nrllib\n\n\nmachine learning\n\n\nreinforcement learning\n\n\ncluster\n\n\n\n\nUsing Ray RLlib to train a deep reinforcement learning agent (PPO) in a custom environment on a private cluster.\n\n\n\n\n\n\nFeb 15, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nUsing Bootstrap to Style a Django App\n\n\n\n\n\n\n\npython\n\n\ndjango\n\n\nbootstrap\n\n\n\n\nUsing the crispy tag and Bootstrap 5 for nicer styling of Django apps.\n\n\n\n\n\n\nFeb 3, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nLessons Learned from Leading My First Project\n\n\n\n\n\n\n\nleadership\n\n\n\n\nSeven lessons learned from leading my first project, RealVNF.\n\n\n\n\n\n\nJan 31, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAdding a Database to a Django App\n\n\n\n\n\n\n\ndjango\n\n\nheroku\n\n\ndatabase\n\n\ngithub\n\n\n\n\nPersistent storage using a SQL-based database for Django (development and deployment on Heroku).\n\n\n\n\n\n\nJan 29, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/google-analytics-track-links/index.html",
+    "href": "posts/google-analytics-track-links/index.html",
+    "title": "Tracking Link Clicks With Google Analytics",
+    "section": "",
+    "text": "Google Analytics has been very helpful to monitor and analyze web traffic on my blog. It provides useful insights into how frequently which of my posts and pages are visited, where visitors are from, etc. As such it already keeps track of link clicks to and within pages of my blog.\nHowever, it is often also interesting to track and monitor clicks to outgoing links, i.e., to external websites. This is useful, for example, to keep track of clicks to affiliate links on a website. Such outgoing link clicks are not tracked and shown by default in Google Analytics (the new/current GA4 version) but have to be configured manually.\nIt took me surprisingly long to figure out how to track clicks to specific (outgoing) links in Google Analytics, even though it is very simple. To spare others some time, here how it works (details and screenshots below):"
+  },
+  {
+    "objectID": "posts/google-analytics-track-links/index.html#tracking-a-single-specific-link",
+    "href": "posts/google-analytics-track-links/index.html#tracking-a-single-specific-link",
+    "title": "Tracking Link Clicks With Google Analytics",
+    "section": "Tracking a Single, Specific Link",
+    "text": "Tracking a Single, Specific Link\nIf you want to track a single, specific link, e.g., https://www.example.com/abc, set a single matching condition with parameter link_url and operator “equals (ignore case)”. Then set the value to the specific URL of the link, e.g., https://www.example.com/abc."
+  },
+  {
+    "objectID": "posts/google-analytics-track-links/index.html#tracking-groups-of-links",
+    "href": "posts/google-analytics-track-links/index.html#tracking-groups-of-links",
+    "title": "Tracking Link Clicks With Google Analytics",
+    "section": "Tracking Groups of Links",
+    "text": "Tracking Groups of Links\nIf you are interested in clicks to all links going to a certain website, but you do not want to distinguish clicks to different pages on that website, you can create and track a single event for all these link clicks. For example, you want to track clicks to https://www.example.com/, https://www.example.com/abc, https://www.example.com/def, etc. all together in a single event.\nFor that, you also just need a single matching condition, again using the link_url parameter. Here, simply use the operator “contains (ignore case)” instead of “equals (ignore case)” and use as value the domain name (e.g., example.com), not the full URL (e.g., https://www.example.com/abc).\nI use this approach, creating one event per external page that I am interested in, grouping all links to that page in a single event."
+  },
+  {
+    "objectID": "posts/google-analytics-track-links/index.html#tracking-affiliate-links",
+    "href": "posts/google-analytics-track-links/index.html#tracking-affiliate-links",
+    "title": "Tracking Link Clicks With Google Analytics",
+    "section": "Tracking Affiliate Links",
+    "text": "Tracking Affiliate Links\nIt is also simple to add additional matching conditions for more fine-grained control. For example, this allows tracking clicks to affiliate links, which typically refer to one or multiple pages on a partner website and always contain a certain suffix holding the affiliate ID, e.g., ?in=569. Of course, this affiliate ID is specific to you and the website.\nTo track clicks to all affiliate links, simply extend the approach from above:\n\nUse one matching rule to capture all link clicks to pages of a certain domain with parameter link_url, operator “contains (ignore case)”, and value corresponding to the target domain (e.g., example.com).\nAdd a second matching rule (click “Add condition”) that filters out only affiliate links to the above domain. For that, use the parameter link_url, operator “contains (ignore)”, and use your affiliate ID as value (e.g., ?in=569).\n\n\n\n\nConfiguration of a new Google Analytics event for tracking link clicks to example.com with an example affiliate ID.\n\n\nFinally, click “Create” to save the newly create event - whether it is for tracking a single link, multiple links, or affiliate links. Note that the new event is often not directly included in the list of events. For me, it took several days until Google Analytics showed the new event - both in the reports and in the list of events under “Configure”."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html",
+    "href": "posts/rllib-private-cluster/index.html",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "",
+    "text": "Warning\n\n\n\nThis post is incomplete. See the ongoing discussion for details.\nIn this blog post, I use reinforcement learning (RL) to solve a custom optimization task (here, related to coordination in mobile networks). To this end, I use the scalable RL framework RLlib, which is part of Ray, and a custom environment, which implements the OpenAI Gym interface. As RL algorithm, I use proximal policy optimization (PPO), which is implemented in RLlib and configured in my environment.\nI first show how to train PPO on my environment when running locally. Then, to speed up training, I execute training on a private/on-premise multi-node cluster.\nWhile it is simple in principle, it took me a while to go from running RLlib and my custom environment locally to getting it to work on a private cluster. I’m hoping this guide is useful for anyone in a similar situation. In this blog post, I focus on the general workflow but use my specific environment as an example. I will cover details about my RL approach and environment in a future blog post."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#setup",
+    "href": "posts/rllib-private-cluster/index.html#setup",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Setup",
+    "text": "Setup\nInstallation requires Python 3.8+ and should work on Linux, Windows, and Mac. Inside a virtualenv, install RLlib with\npip install ray[rllib]\nThen install the custom environment. Here, DeepCoMP as described in the readme:\npip install deepcomp\nTest the installation with deepcomp -h, which should show the available CLI options."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#training",
+    "href": "posts/rllib-private-cluster/index.html#training",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Training",
+    "text": "Training\nOnce installation is complete, train a centralized RL agent with PPO in an example scenario. Note, that training will take a while (around 15min on my laptop), so running the command inside a detachable GNU screen or tmux session makes sense.\ndeepcomp --agent central --train-steps 100000 --env medium --slow-ues 3\nThis trains a centralized PPO agent for 100k training steps running on a single core. To use more cores, set the corresponding value via CLI argument --workers. The additional arguments --env and --slow-ues configure my custom DeepCoMP environment (more about that in another blog post). During training, updates should be printed on screen and progress can be monitored with TensorBoard. To start TensorBoard, run (in a separate terminal):\ntensorboard --logdir results/PPO/\nHere, the TensorBoard files are in results/PPO/, but this depends on the environment. Once started, TensorBoard can be accessed at localhost:6006.\n\n\n\nTensorBoard screenshot showing training progress."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#results",
+    "href": "posts/rllib-private-cluster/index.html#results",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Results",
+    "text": "Results\nIn the case of my environment, results are saved in the results directory on the project root (where deepcomp is installed) by default. To specify a custom result path, use the --result-dir CLI argument, which accepts relative paths.\nFiles in folders prefixed with PPO contain neural network weights, configuration, log, and progress files generated by RLlib. They are useful for analyzing training progress or when loading a trained agent for inference (--test arg) or continued training (--continue). Additionally, folders test and videos are generated by DeepCoMP and contain easy-to-parse testing/evaluation results and rendered videos, depending on the DeepCoMP CLI args (--eval and --video).\nOf course, this is just an example. Results are saved differently for each problem and environment."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#preparations",
+    "href": "posts/rllib-private-cluster/index.html#preparations",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Preparations",
+    "text": "Preparations\nWhile there are virtually no code changes required in the environment, some preparation steps were necessary for me to get RLlib to work on our private/on-premise cluster.\n\nCluster Configuration\nThe Ray cluster configuration is saved in a YAML file. My configuration file is here.\nThe most relevant fields concern information about the private cluster:\nprovider:\n    type: local\n    head_ip: &lt;head-machine-ip-or-address&gt;\n    worker_ips:\n        - &lt;worker1-ip&gt;\n        - &lt;worker2-ip&gt;\nHere, type: local indicates that the cluster is local/private/on premise. The head IP or address points to the head node, i.e., the machine that should coordinate the cluster. To execute commands and train my RL agent, I will later attach to the head node, start training and TensorBoard, and finally retrieve results. The workers are other machines in the cluster on which the training is executed.\nDepending on the number of workers listed under worker_ips, also set min_workers and max_workers to the same value.\nFor authentication when logging into the workers and distributing computation across them, also configure auth:\nauth:\n    ssh_user: stefan\n    # Optional if an ssh private key is necessary to ssh to the cluster\n    # This is the SSH key of the local laptop, not of the head node\n    ssh_private_key: ~/.ssh/id_rsa\n\n\nInstallation\nTo run code on the workers, install ray[rllib] and the custom environment deepcomp on each worker machine of the cluster. All nodes in the cluster must have the same Python and same ray version (check with --version inside the virutalenv).\nMaybe this can be avoided, eg, by using Docker images that are pulled automatically?\n\n\nSSH Access\nThe head node needs ssh access to all worker nodes. Ensure the head node’s public SSH key is registered as authorized key (in ssh/authorized_keys) in all worker nodes. The head node’s private key path should be configured in the cluster.yaml.\nIn fact, the private key configured in cluster.yaml is the private key of the local laptop that controls the cluster. Not the head node.\n\n\nray command\nThe ray command needs to be available on all cluster nodes. If the ray command is not available on the cluster, trying to start the cluster will crash with the error Command 'ray' not found ... Failed to setup head node..\nIf ray is installed in a virtual environment, the easiest option is to automatically source the virtualenv on each login. Particularly, adding the following line to .bashrc will source the virtualenv:\nsource path/to/venv/bin/activate\nWhere path/to/venv needs to point to the virtualenv. The change is in effect after log out and back in.\nThen ray --version should run without errors.\n\n\nConnect to Ray cluster\nTo ensure that running ray connects to the same cluster and the same Redis DB, use ray.init(address='auto'). Without argument address='auto', execution on the cluster does not work.\nHowever, for me, adding address='auto' breaks local execution. Hence, I added an optional CLI argument --cluster to my custom deepcomp environment, which adds address='auto' for running the environment on a cluster without code changes."
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#starting-the-ray-cluster",
+    "href": "posts/rllib-private-cluster/index.html#starting-the-ray-cluster",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Starting the Ray Cluster",
+    "text": "Starting the Ray Cluster\n\nOn the local machine\nStart cluster:\n# start the cluster (non-blocking)\nray up cluster.yaml\n\n# forward the cluster dashboard to the local machine (this is a blocking command)\nray dashboard cluster.yaml\nView dashboard: http://localhost:8265\n\n\n\n\n\n\nWarning\n\n\n\nThis currently doesn’t work for me. It only shows the head node, not the workers.\n\n\nConnect to cluster and run command for training. Note, you can attach but not detach. Thus, better to run this in a screen/tmux session.\nray attach cluster.yaml\ndeepcomp --agent central --train-steps 100000 --env medium --slow-ues 3 --cluster --workers XY\nOnce training completed, detach/close terminal with Ctrl+D.\n\n\nMonitoring Training Progress\n\nTraining updates should be printed inside the attached terminal\nOn the cluster’s head node, htop should show ray::RolloutWorker running.\nOn the cluster’s worker nodes, htop should show ray::PPO()::train() (or similar) to indicate the training is running.\nMonitor progress with Tensorboard running tensorboard --host 0.0.0.0 --logdir results/PPO/ on the cluster’s head node. Then access on &lt;head-node-ip&gt;:6006.\n\n\n\n\n\n\n\nWarning\n\n\n\nThis currently doesn’t work for me. It seems like the program is only running on the head nodes, not at all on the workers.\n\n\n\n\nRetrieving Training & Testing Results\nFrom the local laptop, use ray rsync-down to copy the result files from the cluster’s head node to the local laptop:\n# ray rsync-down &lt;cluster-config&gt; &lt;source&gt; &lt;target&gt;\nray rsync-down cluster.yaml ~/DeepCoMP/results .\nWill be copied to local directory into results.\n\n\nTerminating the Cluster\nFrom the local laptop:\nray down cluster.yaml"
+  },
+  {
+    "objectID": "posts/rllib-private-cluster/index.html#debugging",
+    "href": "posts/rllib-private-cluster/index.html#debugging",
+    "title": "Scaling Deep Reinforcement Learning to a Private Cluster",
+    "section": "Debugging",
+    "text": "Debugging\nIf the process above does not work, the logs may contain helpful information for debugging the problem. To print the logs, run on the cluster’s head node:\ncat /tmp/ray/session_latest/logs/monitor.*\nTo print a status overview of the cluster:\n ray status --address &lt;address:port&gt;\nWhere &lt;address:port&gt; belongs to the cluster and is displayed when starting it with ray up cluster.yaml (after To connect to this Ray runtime from another node, run ...).\n\nCommon Errors\n\nCommand 'ray' not found when trying to start the cluster\n\nThe ray command is not available on the head node after SSH. One solution is to source the virtualenv with ray in the .bashrc or to install ray system-wide.\n\nRepeatedly autoscaler +4m36s) Adding 1 nodes of type ray-legacy-head-node-type. when training on the cluster\n\n??\n\nWhen trying to run code on the cluster after ray attach cluster.yaml: (raylet) OSError: [Errno 98] Address already in use\n\n?? Is the redis server already running; something wrong with the cluster ??\nStopping and restarting the cluster seems to fix the problem: Detach, then from the laptop stop the cluster: ray down cluster.yaml, then start it again ray up cluster.yaml\n\nAll load seems to be just on the cluster head and nothing is distributed to the workers (when observing with htop)\n\n??\n\nIn the logs:\n\nERROR monitor.py:264 -- Monitor: Cleanup exception. Trying again...\n1 random worker nodes will not be shut down. (due to --keep-min-workers)"
   },
   {
     "objectID": "posts/my-first-project/index.html",
@@ -61,6 +138,27 @@
     "title": "Lessons Learned from Leading My First Project",
     "section": "Embrace Bureaucracy",
     "text": "Embrace Bureaucracy\nI suppose any bigger project comes with bureaucracy. In my case, I had to communicate with the funding partner and the university’s administration. Sometimes, I was surprised by the amount of rules, formulas, and processes for hiring people, traveling, and buying equipment - even with the money available (i.e., after securing the grant).\nAs a small anecdote, I tried to hire student research assistants for the project to start with the beginning of the project in November. Unfortunately, this was not possible and I was told that new contracts could not start at the end of a year. I had to wait until January for hiring the students. In January, I was asked why I did not follow my original budget plan and did not spend any money on staff during the first two months (November and December)…\nStill, while some rules may be a bit bizarre, all people in the administration were friendly and helpful. I understood that I had to identify the right people to ask and keep asking persistently to eventually understand the rules and get what I needed."
+  },
+  {
+    "objectID": "posts/deepcomp/index.html",
+    "href": "posts/deepcomp/index.html",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "",
+    "text": "5G tower image by Christoph Scholz under CC BY-SA 2.0 license.\nIn the last year, I have worked a lot on mobility management and cell selection in mobile networks, which is very relevant for upcoming 5G networks and beyond. In this blog post, I try to give a brief, high-level overview of my research, describing what cell selection is, why it is important yet challenging. I also outline how I solved the cell selection problem with modern self-learning techniques and visualize the outcomes.\nThe whole blog post is meant for people who are interested but do not have a scientific background or extensive knowledge in the area. The corresponding research paper is accepted at 2023 IEEE Transactions on Network and Service Management (TNSM); a preprint is available here.\nEither way, if something is unclear, or you have open questions, feel free to reach out to me. My contact information is on my website."
+  },
+  {
+    "objectID": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
+    "href": "posts/deepcomp/index.html#centralized-cell-selection-with-deepcomp",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "Centralized cell selection with DeepCoMP",
+    "text": "Centralized cell selection with DeepCoMP\nAs a centralized approach, DeepCoMP assumes global knowledge and control of all users. This means, DeepCoMP needs to collect information from all users in a central location, e.g., about users’ current connections, signal strength, etc. Similarly, DeepCoMP represents a single, centralized entity that selects cells for all users simultaneously. This is illustrated in the figure below.\n\n\n\nCentralized approach: DeepCoMP"
+  },
+  {
+    "objectID": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
+    "href": "posts/deepcomp/index.html#distributed-cell-selection-with-dd-comp-and-d3-comp",
+    "title": "Cell Selection with Deep Reinforcement Learning",
+    "section": "Distributed cell selection with DD-CoMP and D3-CoMP",
+    "text": "Distributed cell selection with DD-CoMP and D3-CoMP\nIn addition to the centralized DeepCoMP approach, I also propose two distributed approaches, called DD-CoMP and D3-CoMP. These approaches use multi-agent reinforcement learning, where multiple “agents” select cells independently in parallel. Particularly, I assume one agent per user, which observes the users current connections, signal strength, etc. and selects suitable cells. Because each agent only cares about its own user, it is much simpler to implement and use than the centralized DeepCoMP approach. This is visualized in the figure below.\n\n\n\nDistributed approaches: DD-CoMP and D3-CoMP\n\n\nIn reinforcement learning, such agents are initially trained, where they test and learn from many different actions, and then apply their learned policy (in the “inference” phase). In DD-CoMP training experience from all users is combined to learn cell selection more efficiently. In D3-CoMP each agent trains independently from all other agents and only uses experience from its own user. This allows to reduce communication between agents."
   },
   {
     "objectID": "posts/test-markdown-post/index.html",
@@ -131,6 +229,55 @@
     "title": "An Example Markdown Post",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThis is the footnote.↩︎"
+  },
+  {
+    "objectID": "posts/django-bootstrap/index.html",
+    "href": "posts/django-bootstrap/index.html",
+    "title": "Using Bootstrap to Style a Django App",
+    "section": "",
+    "text": "Django allows building simple (and complex) web apps quickly, using Django Templates for rendering. By default, forms, buttons, and other elements are not styled and look quite ugly:\nUsing Bootstrap and django-crispy-forms, the rendered templates can easily be improved to look much nicer, without having to adjust styling manually. For example:\nAs an example, I extend my Django “Hello World” App (described in a previous post) by adding a simple form and rendering it with Bootstrap and django-crispy-forms. All it does is asking for the user’s name and a date and then displaying &lt;username&gt; says \"Hello World!\" on &lt;date&gt; and a counter of how often the button has been clicked. Still, the small example illustrates how to use Bootstrap and django-crispy-forms. Especially with many or large forms, django-crispy-forms becomes useful to reduce repetitive boilerplate."
+  },
+  {
+    "objectID": "posts/django-bootstrap/index.html#creating-a-django-form",
+    "href": "posts/django-bootstrap/index.html#creating-a-django-form",
+    "title": "Using Bootstrap to Style a Django App",
+    "section": "Creating a Django Form",
+    "text": "Creating a Django Form\nAs an example, I create a new form that allows users to specify their name and an arbitrary date that will be displayed in the “Hello World” app. For that, I create helloworld/forms.py with the following content:\nimport datetime\n\nfrom django import forms\n\n\nclass HelloWorldForm(forms.Form):\n    \"\"\"Form asking for the user's name and an arbitrary date, both used inside the displayed 'Hello World' text.\"\"\"\n    username = forms.CharField(label='Your Name', max_length=100)\n    date = forms.DateField(label='An arbitrary date', initial=datetime.date.today,\n                           widget=forms.widgets.DateInput(attrs={'type': 'date'}),\n                           help_text='The entered name and date will be displayed temporarily but publicly in the '\n                                     'generated \"Hello World\" message. It will not be stored.')\nMost field arguments are optional but provide additional information for django-crispy-forms to display in the Bootstrap form.\nI then use this form inside views.py for my index view (the only view of the “Hello World” app so far):\ndef index(request):\n    # retriever counter model instance from DB or create it if it doesn't exist yet\n    counter, created = Counter.objects.get_or_create(name='hello-world-button')\n\n    # increment counter when a POST request arrives (from the button click)\n    # see previous blog post: https://stefanbschneider.github.io/blog/django-db\n    if request.method == 'POST':\n        counter.value += 1\n        counter.save()\n\n        # and get the values filled in form\n        form = HelloWorldForm(request.POST)\n        if form.is_valid():\n            username = form.cleaned_data['username']\n            date = form.cleaned_data['date']\n\n    else:\n        form = HelloWorldForm()\n        username = 'Nobody'\n        date = datetime.date.today()\n\n    context = {\n        'clicks': counter.value,\n        'form': form,\n        'username': username,\n        'date': date,\n    }\n    return render(request, 'helloworld/index.html', context)\nFinally, show the form in the index.html template:\n&lt;div class=\"alert alert-success\" role=\"alert\"&gt;\n    {{ username }} says: \"Hello World!\" on {{ date }}. (Button clicked {{ clicks }}x in total.)\n&lt;/div&gt;\n\n&lt;form action=\"{% url 'helloworld:index' %}\" method=\"post\"&gt;\n    {% csrf_token %}\n    {{ form }}\n    &lt;button type=\"submit\" class=\"btn btn-primary\"&gt;Greet the world!&lt;/button&gt;\n&lt;/form&gt;\nNow, when running the development server, the app shows the new form:\n\n\n\nDjango form without Bootstrap\n\n\nThe “Hello World” message should display the entered username and date as well as the total click count. However, the form does not yet use Bootstrap and is still quite ugly!"
+  },
+  {
+    "objectID": "posts/django-bootstrap/index.html#making-the-form-pretty",
+    "href": "posts/django-bootstrap/index.html#making-the-form-pretty",
+    "title": "Using Bootstrap to Style a Django App",
+    "section": "Making the Form Pretty",
+    "text": "Making the Form Pretty\nTo make the form look nicer, I first include Bootstrap. For using Bootstrap, simply include the Bootstrap CCS and JavaScript inside the head of the Django app’s main/base template. The Bootstrap website has the latest instructions.\nFor my “Hello World” Django app, I simply add the following lines inside helloworld/templates/helloworld/index.html:\n&lt;head&gt;\n    &lt;title&gt;Hello World&lt;/title&gt;\n    \n    {#  Bootstrap  #}\n    &lt;link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1\" crossorigin=\"anonymous\"&gt;\n    &lt;script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW\" crossorigin=\"anonymous\"&gt;&lt;/script&gt;\n\n&lt;!--    other includes --&gt;\n&lt;/head&gt;\n&lt;!-- body --&gt;\nThis loads the new Bootstrap 5 from the JSDeliver CDN network so it can be used within the Django app templates. Now, the alert and button should already look nicer, but the form fields will still look ugly.\nTo also render the form fields with Bootstrap, I use django-crispy-forms. All it takes, is loading crispy and passing the form to crispy inside index.html:\n{% load crispy_forms_tags %}\n\n&lt;div class=\"alert alert-success\" role=\"alert\"&gt;\n    {{ username }} says: \"Hello World!\" on {{ date }}. (Button clicked {{ clicks }}x in total.)\n&lt;/div&gt;\n\n&lt;form action=\"{% url 'helloworld:index' %}\" method=\"post\"&gt;\n    {% csrf_token %}\n    {{ form | crispy }}\n    &lt;button type=\"submit\" class=\"btn btn-primary\"&gt;Greet the world!&lt;/button&gt;\n&lt;/form&gt;\nNow, the Django app should be rendered with Bootstrap and already look much nicer:\n\n\n\nDjango form styled with Bootstrap\n\n\nThe nice thing is that crispy will handle all the overhead of styling each form field with bootstrap, which is particularly useful when having many large forms inside a Django app."
+  },
+  {
+    "objectID": "posts/descript/index.html",
+    "href": "posts/descript/index.html",
+    "title": "Easily editing videos with Descript",
+    "section": "",
+    "text": "After the Covid outbreak, many conferences and similar events were moved online or into a hybrid format. For me as researcher, this means that I now only rarely present my research outcomes live in person. Instead, I record more and more videos of my conferences presentations to share online as part of online conferences. Some of them are also on YouTube.\nI noticed that I tend to use filler words like “uhm”, “äh”, “like”, etc, which are even more annoying in recorded and publishded videos than in live, in-person presentations. Of course, I practice my talks before recording, but it is difficult to get rid of bloopers and filler words completely without editing.\nSince I am not used to video editing, manually searching for and removing filler words in long presentations would have meant hours of work. Hence, I searched for some tool to support this editing process and found Descript, which does exactly what I needed: It can record presentations, converts speech to text, automatically detects and removes filler words, improves audio, and more. To edit and remove parts of the videos, simply delete the corresponding auto-generated text like you would in Word."
+  },
+  {
+    "objectID": "posts/descript/index.html#demonstration",
+    "href": "posts/descript/index.html#demonstration",
+    "title": "Easily editing videos with Descript",
+    "section": "Demonstration",
+    "text": "Demonstration\nHere is a short demonstration of how it works:\n\nOf course, it is not perfect yet and sometimes words are recognized incorrectly. But overall, I was very impressed by how well it usually works, plus there are frequent updates and improvements. It has certainly saved me hours of editing and significantly improved my videos. Since it took me a while to find the tool, I wanted to spread the word in this blog post, hopefully saving others some time."
+  },
+  {
+    "objectID": "posts/descript/index.html#product-video",
+    "href": "posts/descript/index.html#product-video",
+    "title": "Easily editing videos with Descript",
+    "section": "Product Video",
+    "text": "Product Video\nFor more available features, check out the product video/advertisement, which I find very entertaining:"
+  },
+  {
+    "objectID": "posts/descript/index.html#try-it-yourself",
+    "href": "posts/descript/index.html#try-it-yourself",
+    "title": "Easily editing videos with Descript",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nYou can try Descript for free for some hours (but with watermark, I think). After that, there is a discounted plan for students/non-profit, which might be useful, or more powerful plans for creators, professionals, or enterprises."
   },
   {
     "objectID": "posts/django-db/index.html",

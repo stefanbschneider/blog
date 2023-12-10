@@ -2,6 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/google-analytics-track-links/index.html",
+      "/posts/descript/index.html",
+      "/posts/deepcomp/index.html",
+      "/posts/rllib-private-cluster/index.html",
+      "/posts/django-bootstrap/index.html",
       "/posts/my-first-project/index.html",
       "/posts/django-db/index.html",
       "/posts/test-markdown-post/index.html"
