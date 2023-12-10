@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/my-first-project/index.html",
+      "/posts/django-db/index.html",
       "/posts/test-markdown-post/index.html"
     ]
   }

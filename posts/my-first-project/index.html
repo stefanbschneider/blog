@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Stefan Schneider">
+<meta name="dcterms.date" content="2021-01-31">
+<meta name="description" content="Seven lessons learned from leading my first project, RealVNF.">
+
+<title>Stefan’s Blog - Lessons Learned from Leading My First Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RDWKTYTDBL"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RDWKTYTDBL', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  });
+});
+</script> 
+  
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Stefan’s Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stefanbschneider/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Lessons Learned from Leading My First Project</h1>
+                  <div>
+        <div class="description">
+          Seven lessons learned from leading my first project, RealVNF.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">leadership</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Stefan Schneider </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 31, 2021</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link active" data-scroll-target="#lessons-learned">7 Lessons Learned</a>
+  <ul class="collapse">
+  <li><a href="#put-effort-into-recruiting-the-right-people" id="toc-put-effort-into-recruiting-the-right-people" class="nav-link" data-scroll-target="#put-effort-into-recruiting-the-right-people">Put Effort Into Recruiting the Right People</a></li>
+  <li><a href="#talk-to-potential-users-early" id="toc-talk-to-potential-users-early" class="nav-link" data-scroll-target="#talk-to-potential-users-early">Talk to Potential Users Early</a></li>
+  <li><a href="#start-small-scale-quickly" id="toc-start-small-scale-quickly" class="nav-link" data-scroll-target="#start-small-scale-quickly">Start Small, Scale Quickly</a></li>
+  <li><a href="#focus-on-just-a-few-topics-at-once" id="toc-focus-on-just-a-few-topics-at-once" class="nav-link" data-scroll-target="#focus-on-just-a-few-topics-at-once">Focus on Just a Few Topics at Once</a></li>
+  <li><a href="#planning-is-everything.-the-plan-is-nothing." id="toc-planning-is-everything.-the-plan-is-nothing." class="nav-link" data-scroll-target="#planning-is-everything.-the-plan-is-nothing.">Planning is Everything. The Plan is Nothing.</a></li>
+  <li><a href="#clear-frequent-and-open-communication-within-the-team" id="toc-clear-frequent-and-open-communication-within-the-team" class="nav-link" data-scroll-target="#clear-frequent-and-open-communication-within-the-team">Clear, Frequent, and Open Communication Within the Team</a></li>
+  <li><a href="#embrace-bureaucracy" id="toc-embrace-bureaucracy" class="nav-link" data-scroll-target="#embrace-bureaucracy">Embrace Bureaucracy</a></li>
+  </ul></li>
+  <li><a href="#thank-you" id="toc-thank-you" class="nav-link" data-scroll-target="#thank-you">Thank You</a></li>
+  <li><a href="#further-information" id="toc-further-information" class="nav-link" data-scroll-target="#further-information">Further Information</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stefanbschneider/blog/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Today is the last day of my first bigger project, <a href="https://realvnf.github.io/">RealVNF</a>, which I have been leading for 27 months (Nov.&nbsp;2018 - Jan.&nbsp;2021). Early 2018, I applied for the project through the <a href="https://softwarecampus.de/en/">Software Campus</a> and received a €100k grant for hiring student research assistants, traveling, equipment, etc. I also had the opportunity to participate in several leadership trainings organized by companies across Germany. The project itself was research-focused and a collaboration with researchers from Huawei Germany (more info the <a href="https://realvnf.github.io/">website</a>).</p>
+<p>I found that leading the project was surprisingly challenging but, in the end, definitely successful and a great experience. This blog post reflects on the last 27 months and summarizes seven lessons learned from a leadership/project management perspective.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/realvnf.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">RealVNF logo designed with DesignEvo (www.designevo.com).</figcaption>
+</figure>
+</div>
+<section id="lessons-learned" class="level1">
+<h1>7 Lessons Learned</h1>
+<section id="put-effort-into-recruiting-the-right-people" class="level2">
+<h2 class="anchored" data-anchor-id="put-effort-into-recruiting-the-right-people">Put Effort Into Recruiting the Right People</h2>
+<p>Recruiting the right people for the project was very important. Most of the people I hired at the beginning stayed until the end of the project.</p>
+<p>Initially, I posted the job openings broadly online and received many applications. I also directly asked talented people I knew to apply. To avoid interviewing dozens of applicants, I introduced a small programming exercise that applicants had to submit. It was doable in maybe 1-3 hours using basic Python and tools like GitHub. I invited applicants who finished this first task to an interview, asking them to read a selected research paper up front and prepare to summarize it during the interview.</p>
+<p>Both tasks meant initial extra work for both me and the applicants but helped to select the most suitable candidates for the project. In the end, I got to work with motivated and talented people, who made the project a success.</p>
+</section>
+<section id="talk-to-potential-users-early" class="level2">
+<h2 class="anchored" data-anchor-id="talk-to-potential-users-early">Talk to Potential Users Early</h2>
+<p>When preparing the initial project plan, of course, I discussed it with people in my group at university. Still, it was only when talking to the researchers at Huawei, I understood that they had a very different perspective on the problem we were trying to solve. We spent the first months discussing and aligning our understanding of the problem and possible solution approaches. These discussions were very valuable to ensure that the work in the project was actually relevant and helpful in practice. As a leading company in networking, Huawei is a potential user of our developed coordination schemes and thus was an ideal project partner.</p>
+<p>Especially in academia, it is easy to get excited about an idea without properly thinking (or even understanding) its relevance in practice. Whether in academia or industry, I believe it is very important to talk to potential users/customers early and understand their needs before designing a solution. This is related to the concept of <a href="https://www.interaction-design.org/literature/topics/design-thinking">design thinking</a>.</p>
+</section>
+<section id="start-small-scale-quickly" class="level2">
+<h2 class="anchored" data-anchor-id="start-small-scale-quickly">Start Small, Scale Quickly</h2>
+<p>When starting the project, we had tons of interesting ideas and thought of a variety of relevant problem aspects that we wanted to address. Creating an approach from scratch that incorporates all ideas and considers all problem aspects would have been prohibitively complex. Instead, it was important to quickly identify the most important aspects and most promising ideas and simplify everything else. This helped to get started quickly.</p>
+<p>Once the simple approach worked, we could extend it to integrate more ideas and address more problem aspects. It is also helpful to have a working prototype at all times: First for the smallest and simplest case, then for more and more complex scenarios. This allows running evaluations for each stage and quantifying progress. Trying to solve everything at once can be overwhelming and makes it difficult to understand the root cause of problems or bugs. Building on something that works already is much simpler, faster, and less error prone. Versioning everything allows going back to previous, working versions if something breaks in between.</p>
+<p>Of course, it makes sense to think of a realistic roadmap and architecture at the beginning to have a clear direction and ensure that initial solutions can easily be extended later.</p>
+</section>
+<section id="focus-on-just-a-few-topics-at-once" class="level2">
+<h2 class="anchored" data-anchor-id="focus-on-just-a-few-topics-at-once">Focus on Just a Few Topics at Once</h2>
+<p>At the beginning, I was wondering whether I should assign all students working on the project to their own topic or to let them all work on the same topic. The former would allow more parallelization and independent work, thus less dependencies and blocking each other. Still, I found that it was much easier focusing all work on just one or two topics (of course, still with different tasks). Not only did it help drive progress faster, it also allowed more productive meetings and discussions between team members.</p>
+<p>While this worked well for my project with 3-4 people, it will likely be different for much larger projects.</p>
+</section>
+<section id="planning-is-everything.-the-plan-is-nothing." class="level2">
+<h2 class="anchored" data-anchor-id="planning-is-everything.-the-plan-is-nothing.">Planning is Everything. The Plan is Nothing.</h2>
+<p>Especially in a research-focused project like RealVNF, there is a lot of uncertainty, e.g., about experiment outcomes, where the outcome of one task affects the next one. This makes mid-/long-term planning very difficult.</p>
+<p>I found it useful to have a high-level “storyline” in mind with intermediate milestones, but to frequently adjust it to new insights or results. When interpreting results and adjusting the plan, we always discussed and decided next steps in the group. It is important for motivation to not only understand <em>what</em> a task is about but also <em>why</em> it is relevant. In general, frequent and clear communication within the team was crucial to quickly adapt to new outcomes and avoid wasting time.</p>
+</section>
+<section id="clear-frequent-and-open-communication-within-the-team" class="level2">
+<h2 class="anchored" data-anchor-id="clear-frequent-and-open-communication-within-the-team">Clear, Frequent, and Open Communication Within the Team</h2>
+<p>Frequent communication with and within the team is crucial. Still, I did not want to waste everyone’s time with unnecessary meetings. For us, weekly group meetings worked quite well. I structured each meeting into status updates, discussion items, and tasks for the next week and tried to limit them to at most an hour. Upcoming tasks need to be communicated very clearly (goal, scope, time) to avoid misunderstandings. Sending out short notes after each meeting helped to keep everyone on the same page.</p>
+<p>For an overview of past, current, and upcoming tasks, we also used GitHub issues and project boards (Kanban boards). Additionally, we defined high-level monthly goals/milestones to keep the project a bit more focused. To keep the discussion going during the week and quickly adapt to new experiment outcomes or new insights, we kept in touch via Slack constantly.</p>
+<p>We also did individual feedback discussions every now and then, which were really useful. In retrospective, I would do one-to-one meetings more regularly to better understand each team member’s needs and interests. It is important to encourage open communication at all times such that team members say if they have too many or too few tasks. Both is demotivating. At the same time, it can be difficult to estimate how quickly someone will progress with a task.</p>
+<p>Finally, while communication and tooling still worked well when working remotely during COVID-19, social meetings were no longer possible. Such social meetings were nice to hang out informally and improve team spirit.</p>
+</section>
+<section id="embrace-bureaucracy" class="level2">
+<h2 class="anchored" data-anchor-id="embrace-bureaucracy">Embrace Bureaucracy</h2>
+<p>I suppose any bigger project comes with bureaucracy. In my case, I had to communicate with the funding partner and the university’s administration. Sometimes, I was surprised by the amount of rules, formulas, and processes for hiring people, traveling, and buying equipment - even with the money available (i.e., after securing the grant).</p>
+<p>As a small anecdote, I tried to hire student research assistants for the project to start with the beginning of the project in November. Unfortunately, this was not possible and I was told that new contracts could not start at the end of a year. I had to wait until January for hiring the students. In January, I was asked why I did not follow my original budget plan and did not spend any money on staff during the first two months (November and December)…</p>
+<p>Still, while some rules may be a bit bizarre, all people in the administration were friendly and helpful. I understood that I had to identify the right people to ask and keep asking persistently to eventually understand the rules and get what I needed.</p>
+</section>
+</section>
+<section id="thank-you" class="level1">
+<h1>Thank You</h1>
+<p>Leading this first project was a great experience and an amazing opportunity. I want to thank everyone directly or indirectly involved in the project! Particularly,</p>
+<ul>
+<li>thank you to my colleagues at Paderborn University, the project partners at Huawei, and all student research assistants. It was a pleasure to work with you!</li>
+<li>thank you to Software Campus, which provided the framework and opportunity for this project!</li>
+<li>thank you to the German Ministry for Education and Research (BMBF) for providing funding! This also means thank you to everyone paying taxes in Germany :)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/swc.png" height="150" class="figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="further-information" class="level1">
+<h1>Further Information</h1>
+<ul>
+<li><a href="https://realvnf.github.io/">RealVNF Project Website and Outcomes</a></li>
+<li><a href="https://softwarecampus.de/en/project/realvnf-improved-coordination-of-chained-vnfs-under-realistic-conditions/">RealVNF Official Project Description</a></li>
+<li><a href="https://github.com/RealVNF">RealVNF GitHub Repositories</a></li>
+<li><a href="https://softwarecampus.de/en/">Software Campus</a></li>
+<li><a href="https://stefanbschneider.github.io/blog/categories/#leadership">All Blog Posts on Leadership</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

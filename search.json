@@ -2,9 +2,65 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Stefan’s Blog - Things I learned or want to learn",
+    "title": "Stefan’s Blog - Things I Learned or Want to Learn",
     "section": "",
-    "text": "An Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+    "text": "Lessons Learned from Leading My First Project\n\n\n\n\n\n\n\nleadership\n\n\n\n\nSeven lessons learned from leading my first project, RealVNF.\n\n\n\n\n\n\nJan 31, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAdding a Database to a Django App\n\n\n\n\n\n\n\ndjango\n\n\nheroku\n\n\ndatabase\n\n\ngithub\n\n\n\n\nPersistent storage using a SQL-based database for Django (development and deployment on Heroku).\n\n\n\n\n\n\nJan 29, 2021\n\n\nStefan Schneider\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/my-first-project/index.html",
+    "href": "posts/my-first-project/index.html",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "",
+    "text": "Today is the last day of my first bigger project, RealVNF, which I have been leading for 27 months (Nov. 2018 - Jan. 2021). Early 2018, I applied for the project through the Software Campus and received a €100k grant for hiring student research assistants, traveling, equipment, etc. I also had the opportunity to participate in several leadership trainings organized by companies across Germany. The project itself was research-focused and a collaboration with researchers from Huawei Germany (more info the website).\nI found that leading the project was surprisingly challenging but, in the end, definitely successful and a great experience. This blog post reflects on the last 27 months and summarizes seven lessons learned from a leadership/project management perspective."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#put-effort-into-recruiting-the-right-people",
+    "href": "posts/my-first-project/index.html#put-effort-into-recruiting-the-right-people",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Put Effort Into Recruiting the Right People",
+    "text": "Put Effort Into Recruiting the Right People\nRecruiting the right people for the project was very important. Most of the people I hired at the beginning stayed until the end of the project.\nInitially, I posted the job openings broadly online and received many applications. I also directly asked talented people I knew to apply. To avoid interviewing dozens of applicants, I introduced a small programming exercise that applicants had to submit. It was doable in maybe 1-3 hours using basic Python and tools like GitHub. I invited applicants who finished this first task to an interview, asking them to read a selected research paper up front and prepare to summarize it during the interview.\nBoth tasks meant initial extra work for both me and the applicants but helped to select the most suitable candidates for the project. In the end, I got to work with motivated and talented people, who made the project a success."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#talk-to-potential-users-early",
+    "href": "posts/my-first-project/index.html#talk-to-potential-users-early",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Talk to Potential Users Early",
+    "text": "Talk to Potential Users Early\nWhen preparing the initial project plan, of course, I discussed it with people in my group at university. Still, it was only when talking to the researchers at Huawei, I understood that they had a very different perspective on the problem we were trying to solve. We spent the first months discussing and aligning our understanding of the problem and possible solution approaches. These discussions were very valuable to ensure that the work in the project was actually relevant and helpful in practice. As a leading company in networking, Huawei is a potential user of our developed coordination schemes and thus was an ideal project partner.\nEspecially in academia, it is easy to get excited about an idea without properly thinking (or even understanding) its relevance in practice. Whether in academia or industry, I believe it is very important to talk to potential users/customers early and understand their needs before designing a solution. This is related to the concept of design thinking."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#start-small-scale-quickly",
+    "href": "posts/my-first-project/index.html#start-small-scale-quickly",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Start Small, Scale Quickly",
+    "text": "Start Small, Scale Quickly\nWhen starting the project, we had tons of interesting ideas and thought of a variety of relevant problem aspects that we wanted to address. Creating an approach from scratch that incorporates all ideas and considers all problem aspects would have been prohibitively complex. Instead, it was important to quickly identify the most important aspects and most promising ideas and simplify everything else. This helped to get started quickly.\nOnce the simple approach worked, we could extend it to integrate more ideas and address more problem aspects. It is also helpful to have a working prototype at all times: First for the smallest and simplest case, then for more and more complex scenarios. This allows running evaluations for each stage and quantifying progress. Trying to solve everything at once can be overwhelming and makes it difficult to understand the root cause of problems or bugs. Building on something that works already is much simpler, faster, and less error prone. Versioning everything allows going back to previous, working versions if something breaks in between.\nOf course, it makes sense to think of a realistic roadmap and architecture at the beginning to have a clear direction and ensure that initial solutions can easily be extended later."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#focus-on-just-a-few-topics-at-once",
+    "href": "posts/my-first-project/index.html#focus-on-just-a-few-topics-at-once",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Focus on Just a Few Topics at Once",
+    "text": "Focus on Just a Few Topics at Once\nAt the beginning, I was wondering whether I should assign all students working on the project to their own topic or to let them all work on the same topic. The former would allow more parallelization and independent work, thus less dependencies and blocking each other. Still, I found that it was much easier focusing all work on just one or two topics (of course, still with different tasks). Not only did it help drive progress faster, it also allowed more productive meetings and discussions between team members.\nWhile this worked well for my project with 3-4 people, it will likely be different for much larger projects."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#planning-is-everything.-the-plan-is-nothing.",
+    "href": "posts/my-first-project/index.html#planning-is-everything.-the-plan-is-nothing.",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Planning is Everything. The Plan is Nothing.",
+    "text": "Planning is Everything. The Plan is Nothing.\nEspecially in a research-focused project like RealVNF, there is a lot of uncertainty, e.g., about experiment outcomes, where the outcome of one task affects the next one. This makes mid-/long-term planning very difficult.\nI found it useful to have a high-level “storyline” in mind with intermediate milestones, but to frequently adjust it to new insights or results. When interpreting results and adjusting the plan, we always discussed and decided next steps in the group. It is important for motivation to not only understand what a task is about but also why it is relevant. In general, frequent and clear communication within the team was crucial to quickly adapt to new outcomes and avoid wasting time."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#clear-frequent-and-open-communication-within-the-team",
+    "href": "posts/my-first-project/index.html#clear-frequent-and-open-communication-within-the-team",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Clear, Frequent, and Open Communication Within the Team",
+    "text": "Clear, Frequent, and Open Communication Within the Team\nFrequent communication with and within the team is crucial. Still, I did not want to waste everyone’s time with unnecessary meetings. For us, weekly group meetings worked quite well. I structured each meeting into status updates, discussion items, and tasks for the next week and tried to limit them to at most an hour. Upcoming tasks need to be communicated very clearly (goal, scope, time) to avoid misunderstandings. Sending out short notes after each meeting helped to keep everyone on the same page.\nFor an overview of past, current, and upcoming tasks, we also used GitHub issues and project boards (Kanban boards). Additionally, we defined high-level monthly goals/milestones to keep the project a bit more focused. To keep the discussion going during the week and quickly adapt to new experiment outcomes or new insights, we kept in touch via Slack constantly.\nWe also did individual feedback discussions every now and then, which were really useful. In retrospective, I would do one-to-one meetings more regularly to better understand each team member’s needs and interests. It is important to encourage open communication at all times such that team members say if they have too many or too few tasks. Both is demotivating. At the same time, it can be difficult to estimate how quickly someone will progress with a task.\nFinally, while communication and tooling still worked well when working remotely during COVID-19, social meetings were no longer possible. Such social meetings were nice to hang out informally and improve team spirit."
+  },
+  {
+    "objectID": "posts/my-first-project/index.html#embrace-bureaucracy",
+    "href": "posts/my-first-project/index.html#embrace-bureaucracy",
+    "title": "Lessons Learned from Leading My First Project",
+    "section": "Embrace Bureaucracy",
+    "text": "Embrace Bureaucracy\nI suppose any bigger project comes with bureaucracy. In my case, I had to communicate with the funding partner and the university’s administration. Sometimes, I was surprised by the amount of rules, formulas, and processes for hiring people, traveling, and buying equipment - even with the money available (i.e., after securing the grant).\nAs a small anecdote, I tried to hire student research assistants for the project to start with the beginning of the project in November. Unfortunately, this was not possible and I was told that new contracts could not start at the end of a year. I had to wait until January for hiring the students. In January, I was asked why I did not follow my original budget plan and did not spend any money on staff during the first two months (November and December)…\nStill, while some rules may be a bit bizarre, all people in the administration were friendly and helpful. I understood that I had to identify the right people to ask and keep asking persistently to eventually understand the rules and get what I needed."
   },
   {
     "objectID": "posts/test-markdown-post/index.html",
@@ -77,10 +133,31 @@
     "text": "Footnotes\n\n\nThis is the footnote.↩︎"
   },
   {
+    "objectID": "posts/django-db/index.html",
+    "href": "posts/django-db/index.html",
+    "title": "Adding a Database to a Django App",
+    "section": "",
+    "text": "Most Django apps store and work with data, e.g., entered by users. Django supports multiple relational databases for persistent storage of such data out of the box. In this blog post, I show how to a database to a Django app. For local development, I use the default SQLite database and for production deployment on Heroku, I use PostgreSQL® 1.\nI use the Django “Hello World” App as simple example. I add a button that users can click to say “Hello World!” and count how often it was clicked. The number of clicks is stored in a database and displayed in the app.\nThe whole process is very simple as Django does most of the work in the background: Creating the database, making the queries, etc."
+  },
+  {
+    "objectID": "posts/django-db/index.html#using-the-model-in-the-django-app",
+    "href": "posts/django-db/index.html#using-the-model-in-the-django-app",
+    "title": "Adding a Database to a Django App",
+    "section": "Using the Model in the Django App",
+    "text": "Using the Model in the Django App\nTo integrate the model into the “Hello World” app, I first create a view that handles the interaction with the model. In helloworld/views.py:\nfrom django.shortcuts import render\n\nfrom .models import Counter\n\n\ndef index(request):\n    # retriever counter model instance from DB or create it if it doesn't exist yet\n    counter, created = Counter.objects.get_or_create(name='hello-world-button')\n\n    # increment counter when a POST request arrives (from the button click)\n    if request.method == 'POST':\n        counter.value += 1\n        counter.save()\n\n    context = {\n        'clicks': counter.value,\n    }\n    return render(request, 'helloworld/index.html', context)\nThis view replaces the previous TemplateView in the app’s URL settings (helloworld/urls.py):\nfrom django.urls import path\n\nfrom . import views\n\n\napp_name = 'helloworld'\n\nurlpatterns = [\n    # path('', TemplateView.as_view(template_name='helloworld/index.html'), name='index'),\n    path('', views.index, name='index'),\n]\nFinally, I need to adjust the template to add a button and display the number of times it was clicked (helloworld/templates/helloworld/index.html):\nHello World! ({{ clicks }}x)\n\n&lt;form action=\"{% url 'helloworld:index' %}\" method=\"post\"&gt;\n    {% csrf_token %}\n    &lt;button type=\"submit\" name=\"hello-world-button\"&gt;Greet the world!&lt;/button&gt;\n&lt;/form&gt;\nWhen running the app, it should now look like this:\n\nClicking the button should reload the page and show an increased click count (here, “2x”). The click count should persist even when the app server is restarted or the app is updated.\nOf course, this is super slow and just an example for illustrating persistent storage in Django. In production, this should happen asynchronously with some frontend framework."
+  },
+  {
+    "objectID": "posts/django-db/index.html#footnotes",
+    "href": "posts/django-db/index.html#footnotes",
+    "title": "Adding a Database to a Django App",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nPostgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada, and used with their permission.↩︎"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hi, I am Stefan. I hold a computer science Ph.D. and am passionate about learning new things. I use this blog to take notes for myself - and possibly help others.\nContact details and more information about myself are on my website."
+    "text": "Hi, I am Stefan. I hold a computer science Ph.D. and am passionate about learning new things. I use this blog to take notes for myself - and possibly help others.\nContact details and more information about myself are on my website.\nI created this blog using Quarto."
   }
 ]
