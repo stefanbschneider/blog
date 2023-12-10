@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stefanbschneider.github.io/blog/about.html</loc>
-    <lastmod>2023-12-10T12:08:03.568Z</lastmod>
+    <lastmod>2023-12-10T12:17:22.006Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/welcome/index.html</loc>
-    <lastmod>2023-12-10T12:08:02.614Z</lastmod>
+    <lastmod>2023-12-10T12:17:21.051Z</lastmod>
   </url>
   <url>
-    <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/test-markdown-post.html</loc>
-    <lastmod>2023-12-10T12:08:01.884Z</lastmod>
+    <loc>https://stefanbschneider.github.io/blog/posts/test-markdown-post/index.html</loc>
+    <lastmod>2023-12-10T12:17:20.222Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/posts/post-with-code/index.html</loc>
-    <lastmod>2023-12-10T12:08:02.254Z</lastmod>
+    <lastmod>2023-12-10T12:17:20.638Z</lastmod>
   </url>
   <url>
     <loc>https://stefanbschneider.github.io/blog/index.html</loc>
-    <lastmod>2023-12-10T12:08:03.211Z</lastmod>
+    <lastmod>2023-12-10T12:17:21.642Z</lastmod>
   </url>
 </urlset>
