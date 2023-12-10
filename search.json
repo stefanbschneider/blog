@@ -46,7 +46,7 @@
     "href": "posts/test-markdown-post/index.html#images",
     "title": "An Example Markdown Post",
     "section": "Images",
-    "text": "Images"
+    "text": "Images\n\n\n\n“fast.ai’s logo”"
   },
   {
     "objectID": "posts/test-markdown-post/index.html#code",
