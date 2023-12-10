@@ -6,10 +6,10 @@ website:
   navbar:
     right:
       - about.qmd
+      # - icon: house
+      #   href: https://stefanbschneider.github.io/
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/stefanbschneider/
 format:
   html:
     theme: cosmo
