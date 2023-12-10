@@ -4,14 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This blog is under construction/migration!"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Hi, I am Stefan. I hold a computer science Ph.D. and am passionate about learning new things. I use this blog to take notes for myself - and possibly help others.\nContact details and more information about myself are on my website."
   },
   {
     "objectID": "posts/test-markdown-post/index.html",
@@ -84,17 +77,10 @@
     "text": "Footnotes\n\n\nThis is the footnote.↩︎"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "blog",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nDec 10, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nDec 7, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nAn Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
+    "text": "An Example Markdown Post\n\n\n\n\n\n\n\nmarkdown\n\n\nquarto\n\n\nformatting\n\n\n\n\nA minimal example of using markdown with fastpages/Quarto.\n\n\n\n\n\n\nJan 14, 2020\n\n\nfastpages & quarto\n\n\n\n\n\n\nNo matching items"
   }
 ]
