@@ -4,7 +4,7 @@ aliases:
 date: '2022-01-16'
 title: Tracking Link Clicks With Google Analytics
 description: Monitor clicks to specific links on your website (outgoing, affiliate, ads, etc.) using Google Analytics GA4.
-image: images/google-analytics.png
+image: images/google-analytics-smaller.png
 categories: [google analytics]
 ---
 

@@ -138,11 +138,6 @@ For deployment, Heroku uses by default [a free PostgreSQL® database](https://ww
 This database is automatically created when [initially setting up the Django app on Heroku](https://stefanbschneider.github.io/blog/django-heroku).
 The available databases on Heroku are listed in the [Heroku data dashboard](https://data.heroku.com/).
 
-<!-- <figure>
-    <img src="{{ site.baseurl }}/images/django-db/heroku-db.png" width="609" height="51" alt="Screenshot of the Heroku Data dashboard." />
-    <figcaption>Screenshot of the Heroku Data dashboard.</figcaption>
-</figure> -->
-
 ![Screenshot of the Heroku Data dashboard.](images/heroku-db.png)
 
 
