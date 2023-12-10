@@ -3,9 +3,7 @@ aliases:
 - /test-markdown-post
 author: fastpages & quarto
 categories:
-- markdown
-- quarto
-- formatting
+- blogging
 date: '2020-01-14'
 date-modified: '2023-12-10'
 description: A minimal example of using markdown with fastpages/Quarto.
