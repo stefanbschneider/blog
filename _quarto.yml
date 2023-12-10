@@ -2,7 +2,12 @@ project:
   type: website
 
 website:
-  title: "blog"
+  title: "Stefan's Blog"
+  description: Things I learned or want to learn.
+  repo-url: https://github.com/stefanbschneider/blog
+  repo-actions: [issue]
+  google-analytics: G-RDWKTYTDBL
+  cookie-consent: true
   navbar:
     right:
       - about.qmd
