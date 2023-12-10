@@ -1,5 +1,5 @@
 ---
-title: "blog"
+title: "Stefan's Blog - Things I learned or want to learn"
 listing:
   contents: posts
   sort: "date desc"
@@ -10,5 +10,4 @@ listing:
 page-layout: full
 title-block-banner: true
 ---
-
 
