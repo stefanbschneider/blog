@@ -235,277 +235,70 @@ cookieconsent.run({
 <p>This blog post describes how you can use LLMs to build and deploy your own app in just a few lines of Python code with the <a href="https://huggingface.co/">HuggingFace</a> ecosystem. HuggingFace provides pre-trained models, datasets, and other tools that are handy when working with machine learning models without having to understand all the underlying theory. If you are interested in how LLMs work, see <a href="https://stefanbschneider.github.io/blog/posts/understanding-transformers-attention/">my other blog post on the underlying transformer architecture</a>.</p>
 <p>As an example, the goal of this post is to build an app that answers questions about a given PDF document. The focus is on showing a simple proof of concept rather than high-quality answers.</p>
 <p>First, let’s install the necessary dependencies:</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>U pypdf torch transformers gradio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Looking in indexes: https://pypi.org/simple, https://gitlab%2Bdeploy-token-481912:****@gitlab.com/api/v4/projects/13674083/packages/pypi/simple
-Collecting pypdf
-  Downloading pypdf-4.0.1-py3-none-any.whl.metadata (7.4 kB)
-Collecting torch
-  Downloading torch-2.2.0-cp39-none-macosx_11_0_arm64.whl.metadata (25 kB)
-Collecting transformers
-  Downloading transformers-4.37.2-py3-none-any.whl.metadata (129 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.4/129.4 kB 4.0 MB/s eta 0:00:00
-Collecting gradio
-  Downloading gradio-4.17.0-py3-none-any.whl.metadata (15 kB)
-Requirement already satisfied: typing_extensions&gt;=3.7.4.3 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from pypdf) (4.9.0)
-Collecting filelock (from torch)
-  Using cached filelock-3.13.1-py3-none-any.whl.metadata (2.8 kB)
-Collecting sympy (from torch)
-  Downloading sympy-1.12-py3-none-any.whl (5.7 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 MB 10.2 MB/s eta 0:00:0000:0100:01
-Collecting networkx (from torch)
-  Using cached networkx-3.2.1-py3-none-any.whl.metadata (5.2 kB)
-Requirement already satisfied: jinja2 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from torch) (3.1.3)
-Collecting fsspec (from torch)
-  Downloading fsspec-2024.2.0-py3-none-any.whl.metadata (6.8 kB)
-Collecting huggingface-hub&lt;1.0,&gt;=0.19.3 (from transformers)
-  Downloading huggingface_hub-0.20.3-py3-none-any.whl.metadata (12 kB)
-Collecting numpy&gt;=1.17 (from transformers)
-  Using cached numpy-1.26.4-cp39-cp39-macosx_11_0_arm64.whl.metadata (61 kB)
-Requirement already satisfied: packaging&gt;=20.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from transformers) (23.2)
-Requirement already satisfied: pyyaml&gt;=5.1 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from transformers) (6.0.1)
-Collecting regex!=2019.12.17 (from transformers)
-  Downloading regex-2023.12.25-cp39-cp39-macosx_11_0_arm64.whl.metadata (40 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.9/40.9 kB 3.6 MB/s eta 0:00:00
-Requirement already satisfied: requests in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from transformers) (2.31.0)
-Collecting tokenizers&lt;0.19,&gt;=0.14 (from transformers)
-  Downloading tokenizers-0.15.1-cp39-cp39-macosx_11_0_arm64.whl.metadata (6.7 kB)
-Collecting safetensors&gt;=0.4.1 (from transformers)
-  Downloading safetensors-0.4.2-cp39-cp39-macosx_11_0_arm64.whl.metadata (3.8 kB)
-Collecting tqdm&gt;=4.27 (from transformers)
-  Using cached tqdm-4.66.1-py3-none-any.whl.metadata (57 kB)
-Collecting aiofiles&lt;24.0,&gt;=22.0 (from gradio)
-  Downloading aiofiles-23.2.1-py3-none-any.whl.metadata (9.7 kB)
-Collecting altair&lt;6.0,&gt;=4.2.0 (from gradio)
-  Downloading altair-5.2.0-py3-none-any.whl.metadata (8.7 kB)
-Collecting fastapi (from gradio)
-  Downloading fastapi-0.109.2-py3-none-any.whl.metadata (25 kB)
-Collecting ffmpy (from gradio)
-  Downloading ffmpy-0.3.1.tar.gz (5.5 kB)
-  Preparing metadata (setup.py) ... done
-Collecting gradio-client==0.9.0 (from gradio)
-  Downloading gradio_client-0.9.0-py3-none-any.whl.metadata (7.1 kB)
-Requirement already satisfied: httpx in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from gradio) (0.26.0)
-Collecting importlib-resources&lt;7.0,&gt;=1.3 (from gradio)
-  Using cached importlib_resources-6.1.1-py3-none-any.whl.metadata (4.1 kB)
-Requirement already satisfied: markupsafe~=2.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from gradio) (2.1.5)
-Collecting matplotlib~=3.0 (from gradio)
-  Using cached matplotlib-3.8.2-cp39-cp39-macosx_11_0_arm64.whl.metadata (5.8 kB)
-Collecting orjson~=3.0 (from gradio)
-  Downloading orjson-3.9.13-cp39-cp39-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl.metadata (49 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 49.4/49.4 kB 4.3 MB/s eta 0:00:00
-Collecting pandas&lt;3.0,&gt;=1.0 (from gradio)
-  Downloading pandas-2.2.0-cp39-cp39-macosx_11_0_arm64.whl.metadata (19 kB)
-Collecting pillow&lt;11.0,&gt;=8.0 (from gradio)
-  Downloading pillow-10.2.0-cp39-cp39-macosx_11_0_arm64.whl.metadata (9.7 kB)
-Collecting pydantic&gt;=2.0 (from gradio)
-  Downloading pydantic-2.6.1-py3-none-any.whl.metadata (83 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.5/83.5 kB 6.0 MB/s eta 0:00:00
-Collecting pydub (from gradio)
-  Downloading pydub-0.25.1-py2.py3-none-any.whl (32 kB)
-Collecting python-multipart (from gradio)
-  Downloading python_multipart-0.0.7-py3-none-any.whl.metadata (2.5 kB)
-Collecting ruff&gt;=0.1.7 (from gradio)
-  Downloading ruff-0.2.1-py3-none-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl.metadata (23 kB)
-Collecting semantic-version~=2.0 (from gradio)
-  Downloading semantic_version-2.10.0-py2.py3-none-any.whl (15 kB)
-Collecting tomlkit==0.12.0 (from gradio)
-  Downloading tomlkit-0.12.0-py3-none-any.whl.metadata (2.7 kB)
-Collecting typer&lt;1.0,&gt;=0.9 (from typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Downloading typer-0.9.0-py3-none-any.whl (45 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.9/45.9 kB 3.7 MB/s eta 0:00:00
-Collecting uvicorn&gt;=0.14.0 (from gradio)
-  Downloading uvicorn-0.27.0.post1-py3-none-any.whl.metadata (6.4 kB)
-Collecting websockets&lt;12.0,&gt;=10.0 (from gradio-client==0.9.0-&gt;gradio)
-  Downloading websockets-11.0.3-cp39-cp39-macosx_11_0_arm64.whl (121 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.0/121.0 kB 6.7 MB/s eta 0:00:00
-Requirement already satisfied: jsonschema&gt;=3.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from altair&lt;6.0,&gt;=4.2.0-&gt;gradio) (4.21.1)
-Collecting toolz (from altair&lt;6.0,&gt;=4.2.0-&gt;gradio)
-  Downloading toolz-0.12.1-py3-none-any.whl.metadata (5.1 kB)
-Requirement already satisfied: zipp&gt;=3.1.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from importlib-resources&lt;7.0,&gt;=1.3-&gt;gradio) (3.17.0)
-Collecting contourpy&gt;=1.0.1 (from matplotlib~=3.0-&gt;gradio)
-  Using cached contourpy-1.2.0-cp39-cp39-macosx_11_0_arm64.whl.metadata (5.8 kB)
-Collecting cycler&gt;=0.10 (from matplotlib~=3.0-&gt;gradio)
-  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
-Collecting fonttools&gt;=4.22.0 (from matplotlib~=3.0-&gt;gradio)
-  Downloading fonttools-4.48.1-cp39-cp39-macosx_10_9_universal2.whl.metadata (158 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 158.9/158.9 kB 8.1 MB/s eta 0:00:00
-Collecting kiwisolver&gt;=1.3.1 (from matplotlib~=3.0-&gt;gradio)
-  Using cached kiwisolver-1.4.5-cp39-cp39-macosx_11_0_arm64.whl.metadata (6.4 kB)
-Collecting pyparsing&gt;=2.3.1 (from matplotlib~=3.0-&gt;gradio)
-  Using cached pyparsing-3.1.1-py3-none-any.whl.metadata (5.1 kB)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from matplotlib~=3.0-&gt;gradio) (2.8.2)
-Collecting pytz&gt;=2020.1 (from pandas&lt;3.0,&gt;=1.0-&gt;gradio)
-  Downloading pytz-2024.1-py2.py3-none-any.whl.metadata (22 kB)
-Collecting tzdata&gt;=2022.7 (from pandas&lt;3.0,&gt;=1.0-&gt;gradio)
-  Downloading tzdata-2023.4-py2.py3-none-any.whl.metadata (1.4 kB)
-Collecting annotated-types&gt;=0.4.0 (from pydantic&gt;=2.0-&gt;gradio)
-  Downloading annotated_types-0.6.0-py3-none-any.whl.metadata (12 kB)
-Collecting pydantic-core==2.16.2 (from pydantic&gt;=2.0-&gt;gradio)
-  Downloading pydantic_core-2.16.2-cp39-cp39-macosx_11_0_arm64.whl.metadata (6.5 kB)
-Collecting click&lt;9.0.0,&gt;=7.1.1 (from typer&lt;1.0,&gt;=0.9-&gt;typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Using cached click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
-Collecting colorama&lt;0.5.0,&gt;=0.4.3 (from typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
-Collecting shellingham&lt;2.0.0,&gt;=1.3.0 (from typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
-Collecting rich&lt;14.0.0,&gt;=10.11.0 (from typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Using cached rich-13.7.0-py3-none-any.whl.metadata (18 kB)
-Requirement already satisfied: h11&gt;=0.8 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from uvicorn&gt;=0.14.0-&gt;gradio) (0.14.0)
-Collecting starlette&lt;0.37.0,&gt;=0.36.3 (from fastapi-&gt;gradio)
-  Downloading starlette-0.36.3-py3-none-any.whl.metadata (5.9 kB)
-Requirement already satisfied: anyio in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from httpx-&gt;gradio) (4.2.0)
-Requirement already satisfied: certifi in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from httpx-&gt;gradio) (2024.2.2)
-Requirement already satisfied: httpcore==1.* in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from httpx-&gt;gradio) (1.0.2)
-Requirement already satisfied: idna in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from httpx-&gt;gradio) (3.6)
-Requirement already satisfied: sniffio in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from httpx-&gt;gradio) (1.3.0)
-Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from requests-&gt;transformers) (3.3.2)
-Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from requests-&gt;transformers) (2.2.0)
-Collecting mpmath&gt;=0.19 (from sympy-&gt;torch)
-  Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 8.3 MB/s eta 0:00:00a 0:00:01
-Requirement already satisfied: attrs&gt;=22.2.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from jsonschema&gt;=3.0-&gt;altair&lt;6.0,&gt;=4.2.0-&gt;gradio) (23.2.0)
-Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from jsonschema&gt;=3.0-&gt;altair&lt;6.0,&gt;=4.2.0-&gt;gradio) (2023.12.1)
-Requirement already satisfied: referencing&gt;=0.28.4 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from jsonschema&gt;=3.0-&gt;altair&lt;6.0,&gt;=4.2.0-&gt;gradio) (0.33.0)
-Requirement already satisfied: rpds-py&gt;=0.7.1 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from jsonschema&gt;=3.0-&gt;altair&lt;6.0,&gt;=4.2.0-&gt;gradio) (0.17.1)
-Requirement already satisfied: six&gt;=1.5 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib~=3.0-&gt;gradio) (1.16.0)
-Collecting markdown-it-py&gt;=2.2.0 (from rich&lt;14.0.0,&gt;=10.11.0-&gt;typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Using cached markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
-Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from rich&lt;14.0.0,&gt;=10.11.0-&gt;typer[all]&lt;1.0,&gt;=0.9-&gt;gradio) (2.17.2)
-Requirement already satisfied: exceptiongroup&gt;=1.0.2 in /opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages (from anyio-&gt;httpx-&gt;gradio) (1.2.0)
-Collecting mdurl~=0.1 (from markdown-it-py&gt;=2.2.0-&gt;rich&lt;14.0.0,&gt;=10.11.0-&gt;typer[all]&lt;1.0,&gt;=0.9-&gt;gradio)
-  Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
-Downloading pypdf-4.0.1-py3-none-any.whl (283 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 284.0/284.0 kB 6.9 MB/s eta 0:00:00a 0:00:01
-Downloading torch-2.2.0-cp39-none-macosx_11_0_arm64.whl (59.7 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.7/59.7 MB 8.8 MB/s eta 0:00:0000:0100:01m
-Downloading transformers-4.37.2-py3-none-any.whl (8.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.4/8.4 MB 10.2 MB/s eta 0:00:0000:0100:01
-Downloading gradio-4.17.0-py3-none-any.whl (16.7 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 8.1 MB/s eta 0:00:0000:0100:01
-Downloading gradio_client-0.9.0-py3-none-any.whl (306 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 306.8/306.8 kB 7.3 MB/s eta 0:00:00ta 0:00:01
-Downloading tomlkit-0.12.0-py3-none-any.whl (37 kB)
-Downloading aiofiles-23.2.1-py3-none-any.whl (15 kB)
-Downloading altair-5.2.0-py3-none-any.whl (996 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 996.9/996.9 kB 8.7 MB/s eta 0:00:00a 0:00:01
-Downloading huggingface_hub-0.20.3-py3-none-any.whl (330 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 330.1/330.1 kB 7.8 MB/s eta 0:00:00:00:01
-Downloading fsspec-2024.2.0-py3-none-any.whl (170 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.9/170.9 kB 7.5 MB/s eta 0:00:00
-Using cached importlib_resources-6.1.1-py3-none-any.whl (33 kB)
-Using cached matplotlib-3.8.2-cp39-cp39-macosx_11_0_arm64.whl (7.5 MB)
-Downloading numpy-1.26.4-cp39-cp39-macosx_11_0_arm64.whl (14.0 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.0/14.0 MB 8.5 MB/s eta 0:00:0000:0100:01
-Downloading orjson-3.9.13-cp39-cp39-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl (249 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 249.2/249.2 kB 7.1 MB/s eta 0:00:00
-Downloading pandas-2.2.0-cp39-cp39-macosx_11_0_arm64.whl (11.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.8/11.8 MB 10.8 MB/s eta 0:00:0000:0100:01
-Downloading pillow-10.2.0-cp39-cp39-macosx_11_0_arm64.whl (3.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 12.0 MB/s eta 0:00:0000:0100:01
-Downloading pydantic-2.6.1-py3-none-any.whl (394 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 394.8/394.8 kB 8.0 MB/s eta 0:00:00ta 0:00:01
-Downloading pydantic_core-2.16.2-cp39-cp39-macosx_11_0_arm64.whl (1.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 4.1 MB/s eta 0:00:0000:0100:01
-Downloading regex-2023.12.25-cp39-cp39-macosx_11_0_arm64.whl (291 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 291.0/291.0 kB 4.5 MB/s eta 0:00:00a 0:00:01
-Downloading ruff-0.2.1-py3-none-macosx_10_12_x86_64.macosx_11_0_arm64.macosx_10_12_universal2.whl (14.5 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.5/14.5 MB 6.5 MB/s eta 0:00:0000:0100:01
-Downloading safetensors-0.4.2-cp39-cp39-macosx_11_0_arm64.whl (394 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 394.9/394.9 kB 7.0 MB/s eta 0:00:00a 0:00:01
-Downloading tokenizers-0.15.1-cp39-cp39-macosx_11_0_arm64.whl (2.5 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.5/2.5 MB 8.0 MB/s eta 0:00:0000:0100:01
-Using cached tqdm-4.66.1-py3-none-any.whl (78 kB)
-Downloading uvicorn-0.27.0.post1-py3-none-any.whl (60 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.7/60.7 kB 3.8 MB/s eta 0:00:00
-Downloading fastapi-0.109.2-py3-none-any.whl (92 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.1/92.1 kB 6.2 MB/s eta 0:00:00
-Using cached filelock-3.13.1-py3-none-any.whl (11 kB)
-Using cached networkx-3.2.1-py3-none-any.whl (1.6 MB)
-Downloading python_multipart-0.0.7-py3-none-any.whl (22 kB)
-Downloading annotated_types-0.6.0-py3-none-any.whl (12 kB)
-Using cached click-8.1.7-py3-none-any.whl (97 kB)
-Using cached contourpy-1.2.0-cp39-cp39-macosx_11_0_arm64.whl (242 kB)
-Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
-Downloading fonttools-4.48.1-cp39-cp39-macosx_10_9_universal2.whl (2.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.8/2.8 MB 8.5 MB/s eta 0:00:0000:0100:01
-Using cached kiwisolver-1.4.5-cp39-cp39-macosx_11_0_arm64.whl (66 kB)
-Using cached pyparsing-3.1.1-py3-none-any.whl (103 kB)
-Downloading pytz-2024.1-py2.py3-none-any.whl (505 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.5/505.5 kB 7.9 MB/s eta 0:00:00ta 0:00:01
-Using cached rich-13.7.0-py3-none-any.whl (240 kB)
-Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
-Downloading starlette-0.36.3-py3-none-any.whl (71 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.5/71.5 kB 2.9 MB/s eta 0:00:00
-Downloading tzdata-2023.4-py2.py3-none-any.whl (346 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 346.6/346.6 kB 7.1 MB/s eta 0:00:0000:01
-Downloading toolz-0.12.1-py3-none-any.whl (56 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.1/56.1 kB 3.7 MB/s eta 0:00:00
-Using cached markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
-Building wheels for collected packages: ffmpy
-  Building wheel for ffmpy (setup.py) ... done
-  Created wheel for ffmpy: filename=ffmpy-0.3.1-py3-none-any.whl size=5579 sha256=4c085d78b46defd9bd9bf269e503e078a06c1d72b09ce345bf717885cc1a9b97
-  Stored in directory: /Users/stefanshschneider/Library/Caches/pip/wheels/1f/f1/8d/367922b023b526b7c2ced5db30932def7b18cf39d7ac6e8572
-Successfully built ffmpy
-Installing collected packages: pytz, pydub, mpmath, ffmpy, websockets, tzdata, tqdm, toolz, tomlkit, sympy, shellingham, semantic-version, safetensors, ruff, regex, python-multipart, pypdf, pyparsing, pydantic-core, pillow, orjson, numpy, networkx, mdurl, kiwisolver, importlib-resources, fsspec, fonttools, filelock, cycler, colorama, click, annotated-types, aiofiles, uvicorn, typer, torch, starlette, pydantic, pandas, markdown-it-py, huggingface-hub, contourpy, tokenizers, rich, matplotlib, gradio-client, fastapi, transformers, altair, gradio
-Successfully installed aiofiles-23.2.1 altair-5.2.0 annotated-types-0.6.0 click-8.1.7 colorama-0.4.6 contourpy-1.2.0 cycler-0.12.1 fastapi-0.109.2 ffmpy-0.3.1 filelock-3.13.1 fonttools-4.48.1 fsspec-2024.2.0 gradio-4.17.0 gradio-client-0.9.0 huggingface-hub-0.20.3 importlib-resources-6.1.1 kiwisolver-1.4.5 markdown-it-py-3.0.0 matplotlib-3.8.2 mdurl-0.1.2 mpmath-1.3.0 networkx-3.2.1 numpy-1.26.4 orjson-3.9.13 pandas-2.2.0 pillow-10.2.0 pydantic-2.6.1 pydantic-core-2.16.2 pydub-0.25.1 pyparsing-3.1.1 pypdf-4.0.1 python-multipart-0.0.7 pytz-2024.1 regex-2023.12.25 rich-13.7.0 ruff-0.2.1 safetensors-0.4.2 semantic-version-2.10.0 shellingham-1.5.4 starlette-0.36.3 sympy-1.12 tokenizers-0.15.1 tomlkit-0.12.0 toolz-0.12.1 torch-2.2.0 tqdm-4.66.1 transformers-4.37.2 typer-0.9.0 tzdata-2023.4 uvicorn-0.27.0.post1 websockets-11.0.3
-Note: you may need to restart the kernel to use updated packages.</code></pre>
-</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture <span class="op">--</span>no<span class="op">-</span>display</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>U pypdf torch transformers gradio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-answering-with-huggingface" class="level1">
 <h1>Question Answering with HuggingFace</h1>
 <p>We can read the text of PDF document with <code>pypdf</code>. As an example, I’m using the author version of a <a href="https://ieeexplore.ieee.org/document/9789886">paper</a> I wrote on <a href="https://github.com/stefanbschneider/mobile-env"><code>mobile-env</code></a>.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pypdf <span class="im">import</span> PdfReader</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_text_from_pdf(pdf_file: Union[<span class="bu">str</span>, Path]) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read the PDF from the given path and return a string with its entire content."""</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> PdfReader(pdf_file)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract text from all pages</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    full_text <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> page <span class="kw">in</span> reader.pages:</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        full_text <span class="op">+=</span> page.extract_text()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> full_text</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and print parts of the PDF</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>pdf_text <span class="op">=</span> get_text_from_pdf(<span class="st">"mobileenv_author_version.pdf"</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>pdf_text[:<span class="dv">1500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>'mobile-env : An Open Platform for Reinforcement\nLearning in Wireless Mobile Networks\nStefan Schneider, Stefan Werner\nPaderborn University, Germany\n{stschn, stwerner}@mail.upb.deRamin Khalili, Artur Hecker\nHuawei Technologies, Germany\n{ramin.khalili, artur.hecker}@huawei.comHolger Karl\nHasso Plattner Institute,\nUniversity of Potsdam, Germany\nholger.karl@hpi.de\nAbstract —Recent reinforcement learning approaches for con-\ntinuous control in wireless mobile networks have shown im-\npressive results. But due to the lack of open and compatible\nsimulators, authors typically create their own simulation en-\nvironments for training and evaluation. This is cumbersome\nand time-consuming for authors and limits reproducibility and\ncomparability, ultimately impeding progress in the ﬁeld.\nTo this end, we propose mobile-env , a simple and open platform\nfor training, evaluating, and comparing reinforcement learning\nand conventional approaches for continuous control in mobile\nwireless networks. mobile-env is lightweight and implements\nthe common OpenAI Gym interface and additional wrappers,\nwhich allows connecting virtually any single-agent or multi-agent\nreinforcement learning framework to the environment. While\nmobile-env provides sensible default values and can be used out\nof the box, it also has many conﬁguration options and is easy to\nextend. We therefore believe mobile-env to be a valuable platform\nfor driving meaningful progress in autonomous coordination of\nwireless mobile networks.\nIndex'</code></pre>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pypdf <span class="im">import</span> PdfReader</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_text_from_pdf(pdf_file: Union[<span class="bu">str</span>, Path]) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read the PDF from the given path and return a string with its entire content."""</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> PdfReader(pdf_file)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract text from all pages</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    full_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> page <span class="kw">in</span> reader.pages:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        full_text <span class="op">+=</span> page.extract_text()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> full_text</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and print parts of the PDF</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>pdf_text <span class="op">=</span> get_text_from_pdf(<span class="st">"mobileenv_author_version.pdf"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>pdf_text[:<span class="dv">1500</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>'mobile-env: An Open Platform for Reinforcement\nLearning in Wireless Mobile Networks\nStefan Schneider, Stefan Werner\nPaderborn University, Germany\n{stschn, stwerner}@mail.upb.de\nRamin Khalili, Artur Hecker\nHuawei Technologies, Germany\n{ramin.khalili, artur.hecker}@huawei.com\nHolger Karl\nHasso Plattner Institute,\nUniversity of Potsdam, Germany\nholger.karl@hpi.de\nAbstract—Recent reinforcement learning approaches for con-\ntinuous control in wireless mobile networks have shown im-\npressive results. But due to the lack of open and compatible\nsimulators, authors typically create their own simulation en-\nvironments for training and evaluation. This is cumbersome\nand time-consuming for authors and limits reproducibility and\ncomparability, ultimately impeding progress in the ﬁeld.\nTo this end, we proposemobile-env, a simple and open platform\nfor training, evaluating, and comparing reinforcement learning\nand conventional approaches for continuous control in mobile\nwireless networks. mobile-env is lightweight and implements\nthe common OpenAI Gym interface and additional wrappers,\nwhich allows connecting virtually any single-agent or multi-agent\nreinforcement learning framework to the environment. While\nmobile-env provides sensible default values and can be used out\nof the box, it also has many conﬁguration options and is easy to\nextend. We therefore believe mobile-env to be a valuable platform\nfor driving meaningful progress in autonomous coordination of\nwireless mobile networks.\nIndex T'</code></pre>
 </div>
 </div>
 <p>Now we can create a question answering pipeline using HuggingFace, loading a pre-trained model. Then we can ask some questions, providing the PDF text as context.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>question_answerer <span class="op">=</span> pipeline(task<span class="op">=</span><span class="st">"question-answering"</span>, model<span class="op">=</span><span class="st">"deepset/tinyroberta-squad2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>question_answerer <span class="op">=</span> pipeline(task<span class="op">=</span><span class="st">"question-answering"</span>, model<span class="op">=</span><span class="st">"deepset/tinyroberta-squad2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Device set to use mps:0</code></pre>
 </div>
-<div class="cell" data-execution_count="5">
+</div>
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>question_answerer(<span class="st">"What is mobile-env?"</span>, pdf_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>{'score': 0.9885759353637695,
- 'start': 16482,
- 'end': 16499,
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages/transformers/pipelines/question_answering.py:391: FutureWarning: Passing a list of SQuAD examples to the pipeline is deprecated and will be removed in v5. Inputs should be passed using the `question` and `context` keyword arguments instead.
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>{'score': 0.9887111186981201,
+ 'start': 16488,
+ 'end': 16505,
  'answer': 'GitHub repository'}</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>question_answerer(<span class="st">"What programming language is mobile-env written in?"</span>, pdf_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>{'score': 0.9702701568603516, 'start': 3555, 'end': 3561, 'answer': 'Python'}</code></pre>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>question_answerer(<span class="st">"What programming language is mobile-env written in?"</span>, pdf_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>{'score': 0.9665615558624268, 'start': 3552, 'end': 3558, 'answer': 'Python'}</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>question_answerer(<span class="st">"What is the main difference between mobile-env and other simulators?"</span>, pdf_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>{'score': 0.5076063275337219,
- 'start': 12526,
- 'end': 12557,
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>question_answerer(<span class="st">"What is the main difference between mobile-env and other simulators?"</span>, pdf_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>{'score': 0.6506955027580261,
+ 'start': 12539,
+ 'end': 12570,
  'answer': 'more ﬂexible, better documented'}</code></pre>
 </div>
 </div>
@@ -517,27 +310,41 @@ Note: you may need to restart the kernel to use updated packages.</code></pre>
 <h1>Building an App with Gradio</h1>
 <p><a href="https://www.gradio.app/">Gradio</a> allows building simple apps tailored for machine learning use cases. You can define the inputs, a function to where to pass these inputs, and how to display the functions outputs.</p>
 <p>Here, our inputs are the PDF document and the question. The function loads the document and passes the question and text to the pre-trained model. It then outputs the models answer to the user.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> answer_doc_question(pdf_file, question):</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    pdf_text <span class="op">=</span> get_text_from_pdf(pdf_file)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    answer <span class="op">=</span> question_answerer(question, pdf_text)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> answer[<span class="st">"answer"</span>]</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>pdf_input <span class="op">=</span> gr.File(file_types<span class="op">=</span>[<span class="st">".pdf"</span>], label<span class="op">=</span><span class="st">"Upload a PDF document and ask a question about it."</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> gr.Textbox(label<span class="op">=</span><span class="st">"Type a question regarding the uploaded document here."</span>)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>gr.Interface(fn<span class="op">=</span>answer_doc_question, inputs<span class="op">=</span>[pdf_input, question], outputs<span class="op">=</span><span class="st">"text"</span>).launch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> answer_doc_question(pdf_file, question):</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    pdf_text <span class="op">=</span> get_text_from_pdf(pdf_file)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    answer <span class="op">=</span> question_answerer(question, pdf_text)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> answer[<span class="st">"answer"</span>]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add default a file and question, so it's easy to try out the app.</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>pdf_input <span class="op">=</span> gr.File(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span><span class="st">"https://ris.uni-paderborn.de/download/30236/30237/author_version.pdf"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    file_types<span class="op">=</span>[<span class="st">".pdf"</span>],</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Upload a PDF document and ask a question about it."</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> gr.Textbox(</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    value<span class="op">=</span><span class="st">"What is mobile-env?"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Type a question regarding the uploaded document here."</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>gr.Interface(</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    fn<span class="op">=</span>answer_doc_question, inputs<span class="op">=</span>[pdf_input, question], outputs<span class="op">=</span><span class="st">"text"</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>).launch()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running on local URL:  http://127.0.0.1:7860
+<pre><code>Running on local URL:  http://127.0.0.1:7862
 
 To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7860/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/homebrew/Caskroom/miniforge/base/envs/blog/lib/python3.9/site-packages/transformers/pipelines/question_answering.py:391: FutureWarning: Passing a list of SQuAD examples to the pipeline is deprecated and will be removed in v5. Inputs should be passed using the `question` and `context` keyword arguments instead.
+  warnings.warn(</code></pre>
 </div>
 </div>
 <p>If you run this locally, you should see a rendered app based on the question answering pipeline we built above!</p>
