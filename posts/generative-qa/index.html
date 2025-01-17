@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Stefan Schneider">
+<meta name="dcterms.date" content="2025-01-11">
+<meta name="description" content="Generating answers about a given document/article using pre-trained models on HuggingFace.">
+
+<title>Stefan’s Blog - Generative Document Question Answering with HuggingFace</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-RDWKTYTDBL"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-RDWKTYTDBL', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  });
+});
+</script> 
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Stefan’s Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/stefanbschneider/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Generative Document Question Answering with HuggingFace</h1>
+                  <div>
+        <div class="description">
+          Generating answers about a given document/article using pre-trained models on HuggingFace.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">transformer</div>
+                <div class="quarto-category">llm</div>
+                <div class="quarto-category">machine learning</div>
+                <div class="quarto-category">HuggingFace</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Stefan Schneider </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 11, 2025</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">January 11, 2025</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#extractive-question-answering" id="toc-extractive-question-answering" class="nav-link active" data-scroll-target="#extractive-question-answering">Extractive Question Answering</a></li>
+  <li><a href="#generative-question-answering" id="toc-generative-question-answering" class="nav-link" data-scroll-target="#generative-question-answering">Generative Question Answering</a>
+  <ul class="collapse">
+  <li><a href="#existing-models-for-generative-qa" id="toc-existing-models-for-generative-qa" class="nav-link" data-scroll-target="#existing-models-for-generative-qa">Existing Models for Generative Q&amp;A</a></li>
+  <li><a href="#dealing-with-limited-sequence-length" id="toc-dealing-with-limited-sequence-length" class="nav-link" data-scroll-target="#dealing-with-limited-sequence-length">Dealing with Limited Sequence Length</a>
+  <ul class="collapse">
+  <li><a href="#splitting-the-sequence-into-shorter-parts" id="toc-splitting-the-sequence-into-shorter-parts" class="nav-link" data-scroll-target="#splitting-the-sequence-into-shorter-parts">Splitting the Sequence into Shorter Parts</a></li>
+  <li><a href="#using-a-model-with-long-sequence-length" id="toc-using-a-model-with-long-sequence-length" class="nav-link" data-scroll-target="#using-a-model-with-long-sequence-length">Using A Model with Long Sequence Length</a></li>
+  </ul></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s Next?</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/stefanbschneider/blog/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="extractive-question-answering" class="level1">
+<h1>Extractive Question Answering</h1>
+<p>In a <a href="https://stefanbschneider.github.io/blog/posts/question-answering-huggingface/">previous blog post</a>, I showed how answer document-related questions with <a href="https://huggingface.co/">HuggingFace</a> LLMs in just a few lines of Python code and visualize them as simple <a href="https://www.gradio.app/">Gradio App</a>.</p>
+<p>In that blog post, I used the standard question-answering pipeline from HuggingFace. This pipeline defaults to a DistilBERT model (a smaller BERT model) fine-tuned on the Stanford Question Answering Dataset (SQuAD). <a href="https://huggingface.co/distilbert/distilbert-base-cased-distilled-squad">This model</a> and dataset are meant for <em>extractive</em> question answering as illustrated in the following example:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture <span class="op">--</span>no<span class="op">-</span>display</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pip install <span class="op">-</span>U pypdf torch transformers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>extractive_qa <span class="op">=</span> pipeline(task<span class="op">=</span><span class="st">"question-answering"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Abstract from "Attention is all you need" by Vaswani et al.: https://arxiv.org/abs/1706.03762</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>abstract <span class="op">=</span> <span class="st">"""The dominant sequence transduction models are based on complex recurrent or</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">convolutional neural networks that include an encoder and a decoder. The best</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">performing models also connect the encoder and decoder through an attention</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">mechanism. We propose a new simple network architecture, the Transformer,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">based solely on attention mechanisms, dispensing with recurrence and convolutions</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">entirely. Experiments on two machine translation tasks show these models to</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">be superior in quality while being more parallelizable and requiring significantly</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">less time to train. Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task...</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">"What's a transformer'?"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>extractive_qa(question<span class="op">=</span>question, context<span class="op">=</span>abstract)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>No model was supplied, defaulted to distilbert/distilbert-base-cased-distilled-squad and revision 564e9b5 (https://huggingface.co/distilbert/distilbert-base-cased-distilled-squad).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use mps:0</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>{'score': 0.4559027850627899,
+ 'start': 287,
+ 'end': 302,
+ 'answer': 'the Transformer'}</code></pre>
+</div>
+</div>
+<p>The pipeline is given a text as input, here parts of the “Attention is all you need” abstract (see <a href="https://arxiv.org/abs/1706.03762">arxiv</a>), and a question that should be answered based on the given text/context.</p>
+<p>Rather than an answer in natural language, the model outputs an excerpt that is extraced from the original context, given by a start- and end-index within. While this allows concise answers with clear reference to the original source, the answers are not very natural or accurate. The model has no way of combining and merging information from different places of the original text since it can only return a single contiguous excerpt.</p>
+<p>In the example above, I asked what a transformer is and the model simply answered “the Transformer”. Not very helpful! (Note that the answer may be slightly different in the future, since I did not pin a model and model version in the pipeline.)</p>
+<p>Even passing the entire article into the model as context, does not improve the answer - it still only outputs “Transformer” as answer.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read PDF</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Union</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pypdf <span class="im">import</span> PdfReader</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_text_from_pdf(pdf_file: Union[<span class="bu">str</span>, Path]) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Read the PDF from the given path and return a string with its entire content."""</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> PdfReader(pdf_file)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract text from all pages</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    full_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> page <span class="kw">in</span> reader.pages:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        full_text <span class="op">+=</span> page.extract_text()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> full_text</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the full article downloaded from https://arxiv.org/abs/1706.03762</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>full_article <span class="op">=</span> get_text_from_pdf(<span class="st">"transformer-paper.pdf"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Print first few characters of the paper</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(full_article[:<span class="dv">300</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Provided proper attribution is provided, Google hereby grants permission to
+reproduce the tables and figures in this paper solely for use in journalistic or
+scholarly works.
+Attention Is All You Need
+Ashish Vaswani∗
+Google Brain
+avaswani@google.com
+Noam Shazeer∗
+Google Brain
+noam@google.com
+Niki Par</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try to answer the same question as before with the full article as context</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>extractive_qa(question<span class="op">=</span>question, context<span class="op">=</span>full_article)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>{'score': 0.20687614381313324,
+ 'start': 22735,
+ 'end': 22746,
+ 'answer': 'Transformer'}</code></pre>
+</div>
+</div>
+</section>
+<section id="generative-question-answering" class="level1">
+<h1>Generative Question Answering</h1>
+<p>As shown above, <em>extractive</em> question answering is about answering a question by providing an excerpt from the given context. In contrast, <em>generative</em> or <em>abstractive</em> question answering (Q&amp;A) provides generated answers that do not directly reference any parts of the original context.</p>
+<p>Such generated answers often sound more natural and can be more useful. On the other hand, there is no clear link to the original source and the answer may be just a hallucination of the model.</p>
+<p>In the following, I try to build a <em>generative</em> Q&amp;A pipeline. While encoder-only models like BERT are best for extractive Q&amp;A, encoder-decoder or decoder-only models are better suited to generate natural answers for generative Q&amp;A.</p>
+<section id="existing-models-for-generative-qa" class="level2">
+<h2 class="anchored" data-anchor-id="existing-models-for-generative-qa">Existing Models for Generative Q&amp;A</h2>
+<p>Let’s use an existing encoder-decoder model from HuggingFace to try generative Q&amp;A, e.g., the <a href="https://huggingface.co/google/flan-t5-base">FLAN-T5</a>. In comparison to the normal T5 model, the FLAN-T5 was fine-tuned on more downstream tasks:</p>
+<blockquote class="blockquote">
+<p>If you already know T5, FLAN-T5 is just better at everything. For the same number of parameters, these models have been fine-tuned on more than 1000 additional tasks covering also more languages</p>
+</blockquote>
+<p>HuggingFace does not have a pre-defined “generative Q&amp;A” pipeline task, instead this belongs to “Text2Text Generation” as the input consists of the context and questions and the output is the generated answer.</p>
+<p>The following code uses the FLAN-T5 model to generate an answer based on the full “Attention is all you need” article for the same question as above: What’s a transformer?</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>generative_qa_t5 <span class="op">=</span> pipeline(task<span class="op">=</span><span class="st">"text2text-generation"</span>, model<span class="op">=</span><span class="st">"google/flan-t5-base"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>input_text <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>full_article<span class="sc">}</span><span class="ss"> Given this context, please answer the following question. </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>generative_qa_t5(input_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Device set to use mps:0
+Token indices sequence length is longer than the specified maximum sequence length for this model (10385 &gt; 512). Running this sequence through the model will result in indexing errors</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>[{'generated_text': 'a model architecture relying entirely on self-attention to compute representations of its input and'}]</code></pre>
+</div>
+</div>
+<p>“a model architecture relying entirely on self-attention to compute representations of its input and”</p>
+<p>Not bad! The sentence ends out of nowhere, but this <em>generated</em> answer still makes sense. Much more so than the <em>extracted</em> answer above.</p>
+</section>
+<section id="dealing-with-limited-sequence-length" class="level2">
+<h2 class="anchored" data-anchor-id="dealing-with-limited-sequence-length">Dealing with Limited Sequence Length</h2>
+<p>While the answer was good, there was a warning in the output of the pipeline above:</p>
+<pre><code>Token indices sequence length is longer than the specified maximum sequence length for this model (10385 &gt; 512).</code></pre>
+<p>The configured FLAN-T5 model can only handle input sequences of maximum 512 tokens. The full research article is much longer (a bit more than 10k tokens).</p>
+<p>Apparently, the HuggingFace <code>pipeline</code> already has some built-in mechanism to handle these overly long sequences, such that the model still output a sensible answer and did not crash despite the sequence being too long.</p>
+<section id="splitting-the-sequence-into-shorter-parts" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-the-sequence-into-shorter-parts">Splitting the Sequence into Shorter Parts</h3>
+<p>A simple approach to handle such overly long sequences is to split them into smaller parts that fit into the model’s maximum sequence length. Let’s split the full text into 20 parts, such that each part has at most 512 tokens.</p>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the full text into parts and use them separately for answering the question.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_text_into_parts(full_text: <span class="bu">str</span>, num_parts: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">list</span>[<span class="bu">str</span>]:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Split the given full text into a list of equally sized parts."""</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    len_per_part: <span class="bu">int</span> <span class="op">=</span> <span class="bu">int</span>(<span class="bu">len</span>(full_text) <span class="op">/</span> num_parts)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [full_text[i <span class="op">*</span> len_per_part : (i<span class="op">+</span><span class="dv">1</span>) <span class="op">*</span> len_per_part] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_parts)]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>text_parts <span class="op">=</span> split_text_into_parts(full_article, num_parts<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text_part <span class="kw">in</span> text_parts:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    input_text <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>text_part<span class="sc">}</span><span class="ss"> Given this context, please answer the following question. </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(generative_qa_t5(input_text))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[{'generated_text': 'based solely on attention mechanisms'}]
+[{'generated_text': 'tensor2tensor'}]
+[{'generated_text': 'a model architecture eschewing recurrence and instead relying entirely on'}]
+[{'generated_text': 'first transduction model relying entirely on self-attention to compute representations of its input and'}]
+[{'generated_text': 'a decoder'}]
+[{'generated_text': 'a single attention head'}]
+[{'generated_text': 'encoder-decoder attention mechanisms'}]
+[{'generated_text': 'encoder and decoder stacks'}]
+[{'generated_text': 'encoder or decoder'}]
+[{'generated_text': 'self-attention layer'}]
+[{'generated_text': 'regularization'}]
+[{'generated_text': 'transformer'}]
+[{'generated_text': 'translation'}]
+[{'generated_text': 'transformer'}]
+[{'generated_text': 'attention-based model'}]
+[{'generated_text': 'tensorflow'}]
+[{'generated_text': 'LSTM networks'}]
+[{'generated_text': 'neural machine translation'}]
+[{'generated_text': '[34]'}]
+[{'generated_text': 'a syst'}]</code></pre>
+</div>
+</div>
+<p>Having split the text into 20 parts, we now get 20 answers. Some of them are more useful than others since these parts of the text apparently contain more useful information. Answer 4 sounds very similar to the one provided by the <code>pipeline</code> when passing in the whole article: “first transduction model relying entirely on self-attention to compute representations of its input and”</p>
+<p>It seems like, under the hood, the HuggingFace pipeline also splits the full text into multiple parts, applying the model to each one. Likely, they use a more sophisticated way of splitting the parts with overlaps such that no information is lost at the boundaries between two parts.</p>
+<p>To select the best out of all the provided answers, one could compute a score for each answer based on the average per-token score in the generated answer.</p>
+</section>
+<section id="using-a-model-with-long-sequence-length" class="level3">
+<h3 class="anchored" data-anchor-id="using-a-model-with-long-sequence-length">Using A Model with Long Sequence Length</h3>
+<p>An alternative to splitting a long sequence into smaller parts is to simply use another model with a longer supported sequence length, for example the <a href="google/long-t5-local-base">Long-T5 model</a>.</p>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>generative_qa_long_t5 <span class="op">=</span> pipeline(task<span class="op">=</span><span class="st">"text2text-generation"</span>, model<span class="op">=</span><span class="st">"google/long-t5-local-base"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>input_text <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>full_article<span class="sc">}</span><span class="ss"> Given this context, please answer the following question. </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>generative_qa_long_t5(input_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Some weights of LongT5ForConditionalGeneration were not initialized from the model checkpoint at google/long-t5-local-base and are newly initialized: ['lm_head.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use mps:0
+/opt/homebrew/Caskroom/miniforge/base/envs/llm/lib/python3.12/site-packages/torch/nn/functional.py:5096: UserWarning: MPS: The constant padding of more than 3 dimensions is not currently supported natively. It uses View Ops default implementation to run. This may have performance implications. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/aten/src/ATen/native/mps/operations/Pad.mm:465.)
+  return torch._C._nn.pad(input, pad, mode, value)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"a8c7654a404245aba3b283f045269ec7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>[{'generated_text': 'formation formation trains trains trains trains rebuild Destin formationpartnered 1941 1941 nouveaux formation formation formation formationassemblée Lin Lin'}]</code></pre>
+</div>
+</div>
+<p>As you can see, the new model does not complain about the sequence being too long. Instead, it outputs a warning because the model is not fine-tuned for any downstream tasks such as Q&amp;A. As a result, the generated answer is rubbish.</p>
+<p>For better results, we should fine-tune the model on a Q&amp;A dataset (such as <a href="https://huggingface.co/datasets/ibm/duorc">DuoRC</a>). In addition to the Long-T5, there are other models that focus explicitly on long sequence lengths, e.g., the <a href="https://huggingface.co/docs/transformers/en/model_doc/longformer">Longformer</a> and it’s encoder-decoder variant <a href="https://huggingface.co/docs/transformers/en/model_doc/led">LED (Longformer Encoder-Decoder)</a>, which is more useful for generative Q&amp;A.</p>
+<p>I plan to dive deeper into long sequence lengths in a future blog post.</p>
+</section>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s Next?</h2>
+<ul>
+<li>Read some of my related blog posts:
+<ul>
+<li><a href="https://stefanbschneider.github.io/blog/posts/question-answering-huggingface/">Building a Simple Question Answering App with HuggingFace</a></li>
+<li><a href="https://stefanbschneider.github.io/blog/posts/understanding-transformers-attention/">Understanding Transformers and Attention</a></li>
+</ul></li>
+<li>Fine-tune a long-sequence model for generative Q&amp;A</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

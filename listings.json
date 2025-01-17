@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/generative-qa/index.html",
       "/posts/question-answering-huggingface/index.html",
       "/posts/understanding-transformers-attention/index.html",
       "/posts/google-analytics-track-links/index.html",
