@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/llm-fine-tuning/index.html",
       "/posts/generative-qa/index.html",
       "/posts/question-answering-huggingface/index.html",
       "/posts/understanding-transformers-attention/index.html",
