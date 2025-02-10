@@ -207,7 +207,7 @@ cookieconsent.run({
       <div>
       <div class="quarto-title-meta-heading">Modified</div>
       <div class="quarto-title-meta-contents">
-        <p class="date-modified">February 9, 2025</p>
+        <p class="date-modified">February 10, 2025</p>
       </div>
     </div>
       
@@ -638,7 +638,7 @@ Syncing run <strong><a href="https://wandb.ai/stefanbschneider/huggingface/runs/
 </section>
 <section id="full-training-run-on-vast.ai" class="level2">
 <h2 class="anchored" data-anchor-id="full-training-run-on-vast.ai">Full Training Run on <a href="https://cloud.vast.ai/?ref_id=202191">Vast.ai*</a></h2>
-<p>In the example above, I limited the size of the dataset to a very small fraction. For proper fine-tuning, the full dataset should be used and training should be repeated for multiple epochs. Similarly, logging, eval, and save frequency should be adjusted and the trained model should be pushed to the HuggingFace hub.</p>
+<p>In the example above, I limited the size of the dataset to a very small fraction. For proper fine-tuning, the full dataset should be used by setting <code>dataset_limit=None</code> when loading the training data. Possibly, the training should be repeated for multiple epochs; <code>num_train_epochs</code> defaults to 3 epochs if it is not set otherwise in the training arguments. Similarly, logging, eval, and save frequency should be adjusted and the trained model should be pushed to the HuggingFace hub.</p>
 <p>As I do not have a GPU locally, I rented a cheap GPU from <a href="https://cloud.vast.ai/?ref_id=202191">Vast.ai*</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -646,7 +646,7 @@ Syncing run <strong><a href="https://wandb.ai/stefanbschneider/huggingface/runs/
 <figcaption class="figure-caption">Cheap RTX 4070s Ti rented from <a href="https://cloud.vast.ai/?ref_id=202191">Vast.ai*</a></figcaption>
 </figure>
 </div>
-<p>Training on 50% of the full dataset (a bit over 100k samples) for one epoch took roughly 24 hours on the rented RTX 4070s Ti.</p>
+<p>Training on 50% of the full dataset (a bit over 100k samples) for one epoch took roughly 24 hours on the rented RTX 4070s Ti. Use <code>train_data = load_and_process_dataset("train[:50%]", dataset_limit=None)</code> to load the first half of the training set.</p>
 <p>Monitoring the training and evaluation metrics on Weights &amp; Biases, shows the loss slowly going down, both in training and validation, as well as the ROUGE score gradually increasing. If the loss would only decrease on the training set but not the validation set, this would indicate overfitting to the training set.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -693,8 +693,8 @@ Syncing run <strong><a href="https://wandb.ai/stefanbschneider/huggingface/runs/
 <pre><code>'A transformer is a type of neural network architecture.  It\'s basically a network architecture that uses a set of neural networks to communicate with each other.  \n\nFor example, if you have a neural network that is connected to a computer, it will send a signal to the computer.  If you connect a computer to a network, the computer will send the signal to your computer, which will then send it to the network.  This is called a "transformer".\n\nThe Transformer is basically a computer that connects a network to another network, and sends the signal back and forth.\n\n_URL_0_\n\n  \n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n \n\n &gt; \n\n   \n\n \n\n\n \n,\n\n\n &gt; \n \n\n  ,\n\nI\'m not sure what you mean by " transformer"., I\'m sure you\'re talking about " transformer" or " transformer."\n\nIf you\'re referring to " transformer", then you\'re probably referring to the "Transformer" and " transformer":\n\n* Transformer" is the same thing as transformer.\n\n**Transformer* is a transformer.**.. .\n,.\n\n:\n:: _:\n\n,  = ;\n\n\n"Transformer":\n\n\n" transformer" is a term used to describe the transformer. transformer is the transformer that is used to refer to the transformer.: " transformer.\n\n\n*Transformer:\n\n\n\\* Transmitter:\n\n\n\n*Transmitter:\n\n- Transmitter\n\n---\n\n--\n\n\\- transformer\n transformer is a transmitter.\n\n\n\n -?. I\'m not an expert in this field, but I\'m an expert.\n\n  &amp;  :! Transmitter. is an expert,s (_URL_\n\n\n"Transmitter""transformer""transmitter"\n" Transmitter"\n\n(_URL_1_)\rut(_URL)\n\n\r\n(_)'</code></pre>
 </div>
 </div>
-<p>Remember, the base model above simply repeated the input (its answer was ““question: What’s a transformer? In this context: The dominant sequence transduction models are based on complex recurrent…”). In comparison, the answer of the fine-tuned model is a lot better. The first sentence is a sensible answer to the question: “A transformer is a type of neural network architecture.” However, after that, the model starts rambling and the answer quality gets worse.</p>
-<p>I am not sure why a) the answer is so long and b) why it is not better than that. Since the training and validation loss were still going down, more training should further increase the answer quality.</p>
+<p>Remember, the base model above simply repeated the input (its answer was <code>"question: What's a transformer? In this context: The dominant sequence transduction models are based on complex recurrent...</code>). In comparison, the answer of the fine-tuned model is a lot better. The first sentence is a sensible answer to the question: <code>A transformer is a type of neural network architecture.</code> However, after that, the model starts rambling and the answer quality gets worse.</p>
+<p>Since the training and validation loss were still going down, more training should further increase the answer quality. I am not sure if there are any other ways to further improve the quality and keep the model from generating overly long answers (other than reducing the generation maximum length).</p>
 <p>If you have other suggestions for improving the answer quality, I am happy to hear your suggestions (contact info is on <a href="https://stefanbschneider.github.io/">my website</a>)!</p>
 </section>
 <section id="whats-next" class="level1">
