@@ -660,35 +660,42 @@ Syncing run <strong><a href="https://wandb.ai/stefanbschneider/huggingface/runs/
 <section id="testing-the-fine-tuned-model" class="level1">
 <h1>Testing the Fine-Tuned Model</h1>
 <p>To see if the fine-tuned model learned answering questions, I load it from the HuggingFace hub and ask it the same question as the base model above: What is a transformer?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>capture <span class="op">--</span>no<span class="op">-</span>display</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tuned_pipeline <span class="op">=</span> pipeline(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    task<span class="op">=</span><span class="st">"text2text-generation"</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"stefanbschneider/led-base-16384-lfqa-ans-len-512"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Abstract from "Attention is all you need" by Vaswani et al.: https://arxiv.org/abs/1706.03762</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>abstract <span class="op">=</span> <span class="st">"""The dominant sequence transduction models are based on complex recurrent or</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="st">convolutional neural networks that include an encoder and a decoder. The best</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="st">performing models also connect the encoder and decoder through an attention</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="st">mechanism. We propose a new simple network architecture, the Transformer,</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="st">based solely on attention mechanisms, dispensing with recurrence and convolutions</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="st">entirely. Experiments on two machine translation tasks show these models to</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="st">be superior in quality while being more parallelizable and requiring significantly</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="st">less time to train. Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task...</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">"What's a transformer'?"</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>input_text <span class="op">=</span> <span class="ss">f"question: </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss"> context: </span><span class="sc">{</span>abstract<span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tuned_pipeline(input_text)[<span class="dv">0</span>][<span class="st">'generated_text'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>'A transformer is a transformer that is a transformer that is a transformer that is a transformer that is'</code></pre>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> pipeline</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tuned_pipeline <span class="op">=</span> pipeline(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    task<span class="op">=</span><span class="st">"text2text-generation"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"stefanbschneider/led-base-16384-lfqa-ans-len-512"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Device set to use mps:0</code></pre>
 </div>
 </div>
-<p>While the model does not just repeat the input like the base model before, i.e., the format looks better, the answer itself is rubbish, unfortunately :/</p>
-<p>I am not sure why the answer is so bad. Possibly because the fine-tuning did not even complete a single epoch on the entire training dataset (only half of it). Maybe, results get better with more training; at least that’s what the decreasing loss is suggesting.</p>
-<p>I am somewhat disappointed by the outcome, but hope that the generall appraoch of fine-tuning still makes sense and is useful to others. If you have ideas of how I could improve the performance of the fine-tuned model, <strong>I would love to hear your suggestions</strong> (contact info is on <a href="https://stefanbschneider.github.io/">my website</a>)!</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Abstract from "Attention is all you need" by Vaswani et al.: https://arxiv.org/abs/1706.03762</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>abstract <span class="op">=</span> <span class="st">"""The dominant sequence transduction models are based on complex recurrent or</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">convolutional neural networks that include an encoder and a decoder. The best</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">performing models also connect the encoder and decoder through an attention</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">mechanism. We propose a new simple network architecture, the Transformer,</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">based solely on attention mechanisms, dispensing with recurrence and convolutions</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">entirely. Experiments on two machine translation tasks show these models to</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">be superior in quality while being more parallelizable and requiring significantly</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="st">less time to train. Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task...</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">"What's a transformer'?"</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>input_text <span class="op">=</span> <span class="ss">f"question: </span><span class="sc">{</span>question<span class="sc">}</span><span class="ss"> context: </span><span class="sc">{</span>abstract<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>tuned_pipeline(input_text)[<span class="dv">0</span>][<span class="st">'generated_text'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Input ids are automatically padded from 144 to 1024 to be a multiple of `config.attention_window`: 1024</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>'A transformer is a type of neural network architecture.  It\'s basically a network architecture that uses a set of neural networks to communicate with each other.  \n\nFor example, if you have a neural network that is connected to a computer, it will send a signal to the computer.  If you connect a computer to a network, the computer will send the signal to your computer, which will then send it to the network.  This is called a "transformer".\n\nThe Transformer is basically a computer that connects a network to another network, and sends the signal back and forth.\n\n_URL_0_\n\n  \n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n\n \n\n &gt; \n\n   \n\n \n\n\n \n,\n\n\n &gt; \n \n\n  ,\n\nI\'m not sure what you mean by " transformer"., I\'m sure you\'re talking about " transformer" or " transformer."\n\nIf you\'re referring to " transformer", then you\'re probably referring to the "Transformer" and " transformer":\n\n* Transformer" is the same thing as transformer.\n\n**Transformer* is a transformer.**.. .\n,.\n\n:\n:: _:\n\n,  = ;\n\n\n"Transformer":\n\n\n" transformer" is a term used to describe the transformer. transformer is the transformer that is used to refer to the transformer.: " transformer.\n\n\n*Transformer:\n\n\n\\* Transmitter:\n\n\n\n*Transmitter:\n\n- Transmitter\n\n---\n\n--\n\n\\- transformer\n transformer is a transmitter.\n\n\n\n -?. I\'m not an expert in this field, but I\'m an expert.\n\n  &amp;  :! Transmitter. is an expert,s (_URL_\n\n\n"Transmitter""transformer""transmitter"\n" Transmitter"\n\n(_URL_1_)\rut(_URL)\n\n\r\n(_)'</code></pre>
+</div>
+</div>
+<p>Remember, the base model above simply repeated the input (its answer was ““question: What’s a transformer? In this context: The dominant sequence transduction models are based on complex recurrent…”). In comparison, the answer of the fine-tuned model is a lot better. The first sentence is a sensible answer to the question: “A transformer is a type of neural network architecture.” However, after that, the model starts rambling and the answer quality gets worse.</p>
+<p>I am not sure why a) the answer is so long and b) why it is not better than that. Since the training and validation loss were still going down, more training should further increase the answer quality.</p>
+<p>If you have other suggestions for improving the answer quality, I am happy to hear your suggestions (contact info is on <a href="https://stefanbschneider.github.io/">my website</a>)!</p>
 </section>
 <section id="whats-next" class="level1">
 <h1>What’s Next?</h1>
