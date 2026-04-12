@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/fastmcp/index.html",
       "/posts/llm-fine-tuning/index.html",
       "/posts/generative-qa/index.html",
       "/posts/question-answering-huggingface/index.html",
