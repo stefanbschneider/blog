@@ -7,7 +7,7 @@ title: Building and Using Your Own MCP with FastMCP
 description: Quickly building a custom MCP server (remote knowledge base) with FastMCP and using it within VSCode and Copilot.
 image: images/fastmcp-logo.png
 categories: [fastmcp, python, mcp, github, vscode, copilot, machine learning, ai agents]
-published: false
+published: true
 ---
 
 The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) provides a clean way to expose tools and data sources to AI assistants such as Claude and Copilot. 
